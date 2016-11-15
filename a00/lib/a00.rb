@@ -33,28 +33,19 @@ end
 # one step of the process.
 
 def digital_root(num)
-  digits = digital_root(num)
-  res = 0
-  loop do
-    tmp_sum = 0
-    digits.each do |num|
-      tmp_sum += num
-    end
-    res += tmp_sum
-    digits = digital_root(res)
-    break if digits.length > 1
+  until num < 10
+    num = digital_root_helper(num)
   end
-  res
+  num
 end
 
 def digital_root_helper(num)
-  res = []
-  while num > 9
-    res << num % 10
-    num -= num % 10
+  total = 0
+  while num >= 1
+    total += num % 10
+    num /= 10
   end
-  res << num
-  res
+  total
 end
 
 # Jumble sort takes a string and an alphabet. It returns a copy of the string
