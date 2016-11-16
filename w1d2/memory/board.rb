@@ -37,18 +37,11 @@ class Board
 
   def reveal(guessed_pos)
     card = grid[guessed_pos]
-    unless card.face_up?
+    if card.face_up?
+      puts "You can't flip a card that has already been flipped."
+    else
       card.reveal
     end
     card.face_value
   end
 end
-
-# if $PROGRAM_NAME == __FILE__
-#   card1 = Card.new(1)
-#   card2 = Card.new(2)
-#
-#   board = Board.new(card1, card2)
-#
-#   board.render
-# end

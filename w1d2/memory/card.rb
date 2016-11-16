@@ -23,7 +23,7 @@ class Card
     face_value.to_s
   end
 
-  def ==(other_face_value)
-    face_value == other_face_value
+  def ==(other)
+    face_value == other.face_value
   end
 end

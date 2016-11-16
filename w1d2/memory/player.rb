@@ -3,6 +3,7 @@ require_relative 'board.rb'
 
 class HumanPlayer
   attr_reader :name
+  attr_accessor :previous_guess
 
   def initialize(name)
     @name = name
@@ -19,18 +20,20 @@ class HumanPlayer
   def receive_revealed_card(card, pos)
   end
 
-  def receive_match(matching_pos)
+  def receive_match(pos1, pos2)
   end
 end
 
 class ComputerPlayer
   attr_reader :name, :board_size
-  attr_accessor :known_cards, :matched_cards, :known_guess
+  attr_accessor :known_cards, :matched_cards,
+    :known_guess, :previous_guess
 
   def initialize(name)
     @name = name
-    @known_cards = Hash.new { |h, k| h[k] = [] }
-    @matched_cards = []
+    @known_cards = {}
+    @matched_cards = {}
+    @previous_guess = nil
   end
 
   def prompt
@@ -41,42 +44,58 @@ class ComputerPlayer
     @board_size = size
   end
 
-  # needs help :(
-  def guess_logic
-    if @known_guess
-      guess = @known_cards[@known_guess].last
-      @known_guess = nil
-      return guess
-    end
+  def receive_revealed_card(card, pos)
+    @known_cards[pos] = card.face_value
+  end
 
-    @known_cards.each do |key, val|
-      if val.length == 2 && not_matched?(val[0])
-        known_guess = key
-        return val[0]
+  def receive_match(pos1, pos2)
+    @matched_cards[pos1] = true
+    @matched_cards[pos2] = true
+  end
+
+  def guess_logic
+    if previous_guess
+      second_guess
+    else
+      first_guess
+    end
+  end
+
+  def first_guess
+    unmatched_card || choose_random
+  end
+
+  def second_guess
+    matched_card || choose_random
+  end
+
+  def unmatched_card
+    (pos, _) = @known_cards.find do |pos, val1|
+      @known_cards.any? do |pos2, val2|
+        (pos != pos2 && val1 == val2) &&
+          !(@matched_cards[pos] || @matched_cards[pos2])
       end
     end
 
-    guess = choose_random
-    guess
+    pos
   end
 
-  def not_matched?(pos)
-    !matched_cards.include?(pos)
+  def matched_card
+    (pos, _) = @known_cards.find do |pos, val|
+      pos != previous_guess && val == @known_cards[previous_guess] &&
+        !@matched_cards[pos]
+    end
+
+    pos
   end
 
   def choose_random
-    res = []
-    board_size.times do |i|
-      res << i unless @known_cards.values.flatten.include?(i)
+    guess = nil
+
+    until guess && !@known_cards[guess]
+      guess = rand(@board_size)
     end
-    res.sample
-  end
 
-  def receive_revealed_card(card, pos)
-    @known_cards[card.face_value] << pos
-  end
-
-  def receive_match(matching_pos)
-    @matched_cards += matching_pos
+    guess
   end
 end
