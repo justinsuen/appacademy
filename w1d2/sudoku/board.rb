@@ -42,8 +42,6 @@ class Board
       check_row?(col)
     end
 
-
-
     if rows && cols
       true
     else
@@ -52,7 +50,6 @@ class Board
   end
 
   def check_block?(row, col)
-
 
   end
 
@@ -88,10 +85,7 @@ class Board
 end
 
 if $PROGRAM_NAME == __FILE__
-  board = Board.from_file("sudoku1-solved.txt")
+  board = Board.from_file("sudoku1.txt")
   board.render
-  #board.update_tile([0, 1], 2)
-  #puts ""
-  #board.render
   p board.solved?
 end
