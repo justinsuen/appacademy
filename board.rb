@@ -66,7 +66,11 @@ class Board
   end
 
   def game_over?
-    @grid.flatten.all?(&:reveal?) || !found_bombs?
+    popped_bomb? || !found_bombs?
+  end
+
+  def popped_bomb?
+    @grid.flatten.any? { |el| el.bomb? && el.reveal? }
   end
 
   def found_bombs?
