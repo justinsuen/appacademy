@@ -9,14 +9,16 @@ class MinesweeperGame
 
   def play
     @board.populate_grid
-    @board.render
 
     until game_over?
+      @board.render
       com = get_command
       pos = get_pos
       do_command(com, pos)
-      @board.render
     end
+
+    @board.reveal_all
+    @board.render
   end
 
   def get_command

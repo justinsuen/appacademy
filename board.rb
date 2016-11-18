@@ -28,7 +28,7 @@ class Board
   end
 
   def sample_bomb(num_bombs)
-    (0...(num_bombs**2)).to_a.sample(80)
+    (0...(num_bombs**2)).to_a.sample(size)
   end
 
   def neighbors(pos)
@@ -63,6 +63,14 @@ class Board
   def reveal(pos)
     row, col = pos
     grid[row][col].reveal = true
+  end
+
+  def reveal_all
+    @grid.each do |row|
+      row.each do |el|
+        el.reveal = true
+      end
+    end
   end
 
   def game_over?
