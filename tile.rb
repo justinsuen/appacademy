@@ -9,10 +9,8 @@ class Tile
     :empty      => "_"
   }
 
-  DELTAS = [[-1, 1], [-1,0], [-1, -1], [0, -1],
-            [0, 1], [1, 1], [1, 0], [1, -1]]
-
-  attr_reader :tile, :bomb, :reveal
+  attr_reader :tile, :reveal
+  attr_accessor :bomb
 
   def initialize(bomb = false)
     @bomb = bomb
@@ -28,7 +26,12 @@ class Tile
   end
 
   def to_s
-    char = bomb? ? "B".colorize(:red) : " "
+    if reveal?
+      char = bomb? ? "B".colorize(:red) : "_"
+    else
+      char = "*"
+    end
+    char
   end
 
 end

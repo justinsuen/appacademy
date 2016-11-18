@@ -1,3 +1,5 @@
+require_relative 'board'
+
 class MinesweeperGame
   attr_reader :board
 
@@ -6,8 +8,8 @@ class MinesweeperGame
   end
 
   def play
-    board.populate_grid
-    board.render
+    @board.populate_grid
+    @board.render
   end
 end
 

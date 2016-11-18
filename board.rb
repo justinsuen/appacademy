@@ -1,8 +1,13 @@
+require_relative 'tile'
+
 class Board
+
+  DELTAS = [[-1, 1], [-1,0], [-1, -1], [0, -1],
+            [0, 1], [1, 1], [1, 0], [1, -1]]
 
   attr_accessor :grid, :size
 
-  def self.empty_grid
+  def self.empty_grid(size)
     Array.new(size) do
       Array.new(size) { Tile.new }
     end
@@ -10,7 +15,7 @@ class Board
 
   def initialize(size)
     @size = size
-    @grid = self.empty_grid
+    @grid = Board.empty_grid(size)
   end
 
   def populate_grid
@@ -24,6 +29,21 @@ class Board
 
   def sample_bomb(num_bombs)
     (0...(num_bombs**2)).to_a.sample(num_bombs)
+  end
+
+  def neighbors(pos)
+    row, col = pos
+    neighbor_pos = []
+
+    DELTAS.each do |del|
+      new_row = row + del[0]
+      new_col = col + del[1]
+      unless new_row < 0 || new_col < 0
+        neighbor_pos << [new_row, new_col]
+      end
+    end
+
+    neighbor_pos
   end
 
   def render
