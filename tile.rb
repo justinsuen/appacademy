@@ -1,20 +1,13 @@
 require 'colorize'
 
 class Tile
-
-  CHARS = {
-    :bomb       => "B",
-    :flag       => "F",
-    :unexplored => "*",
-    :empty      => "_"
-  }
-
-  attr_reader :tile, :reveal
-  attr_accessor :bomb
+  attr_reader :tile
+  attr_accessor :bomb, :flag, :reveal
 
   def initialize(bomb = false)
     @bomb = bomb
     @reveal = false
+    @flag = false
   end
 
   def bomb?
@@ -25,8 +18,14 @@ class Tile
     reveal
   end
 
+  def flag?
+    flag
+  end
+
   def to_s
-    if reveal?
+    if flag?
+      char = "F".colorize(:blue)
+    elsif reveal?
       char = bomb? ? "B".colorize(:red) : "_"
     else
       char = "*"

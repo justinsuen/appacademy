@@ -15,6 +15,7 @@ class MinesweeperGame
       com = get_command
       pos = get_pos
       do_command(com, pos)
+      @board.render
     end
   end
 
@@ -25,7 +26,7 @@ class MinesweeperGame
 
   def get_pos
     puts "input pos"
-    gets.chomp.split(",")
+    gets.chomp.split(",").map(&:to_i)
   end
 
   def do_command(com, pos)

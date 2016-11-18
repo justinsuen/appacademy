@@ -28,7 +28,7 @@ class Board
   end
 
   def sample_bomb(num_bombs)
-    (0...(num_bombs**2)).to_a.sample(num_bombs)
+    (0...(num_bombs**2)).to_a.sample(80)
   end
 
   def neighbors(pos)
@@ -53,11 +53,23 @@ class Board
     end
   end
 
+  def flag(pos)
+    row, col = pos
+    tile = grid[row][col]
+
+    tile.flag = true
+  end
+
+  def reveal(pos)
+    row, col = pos
+    grid[row][col].reveal = true
+  end
+
   def game_over?
-    @grid.all?(&:reveal?) || !found_bombs?
+    @grid.flatten.all?(&:reveal?) || !found_bombs?
   end
 
   def found_bombs?
-    @grid.any? { |el| !el.bomb? && !el.reveal? }
+    @grid.flatten.any? { |el| !el.bomb? && !el.reveal? }
   end
 end
