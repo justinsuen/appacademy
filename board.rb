@@ -52,4 +52,12 @@ class Board
       puts "#{i} #{row.join(" ")}"
     end
   end
+
+  def game_over?
+    @grid.all?(&:reveal?) || !found_bombs?
+  end
+
+  def found_bombs?
+    @grid.any? { |el| !el.bomb? && !el.reveal? }
+  end
 end

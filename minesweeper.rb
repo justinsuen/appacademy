@@ -10,6 +10,14 @@ class MinesweeperGame
   def play
     @board.populate_grid
     @board.render
+
+    until game_over?
+
+    end
+  end
+
+  def game_over?
+    board.game_over?
   end
 end
 
