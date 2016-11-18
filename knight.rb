@@ -4,7 +4,7 @@ class KnightPathFinder
   DELTAS = [[-2, 1], [-2, 1], [-1, -2], [-1, 2], [2, 1], [2, -1],
             [1, 2], [1, -2]]
 
-  attr_reader :curr_pos, :visited_positions, :moves, :root
+  attr_reader :curr_pos
 
   def initialize(start_pos)
     @curr_pos = start_pos
