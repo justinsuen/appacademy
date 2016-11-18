@@ -8,7 +8,7 @@ class Board
     end
   end
 
-  def initialize(size = 9)
+  def initialize(size)
     @size = size
     @grid = self.empty_grid
   end
@@ -26,4 +26,10 @@ class Board
     (0...(num_bombs**2)).to_a.sample(num_bombs)
   end
 
+  def render
+    puts "  #{(0...size).to_a.join(" ")}"
+    grid.each_with_index do |row, i|
+      puts "#{i} #{row.join(" ")}"
+    end
+  end
 end
