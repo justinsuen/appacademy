@@ -5,7 +5,7 @@ class SuperComputerPlayer < ComputerPlayer
     # next_mover_mark = mark == :x ? :o : :x
     node = TicTacToeNode.new(game.board, mark)
     child_arr = node.children
-    
+
     child_arr.each do |child|
       if child.winning_node?(mark)
         return child.prev_move_pos
@@ -19,7 +19,7 @@ class SuperComputerPlayer < ComputerPlayer
     end
     # non_losing_moves = child_arr.reject { |child| child.losing_node?(mark) }
     # non_losing_moves.sample.prev_move_pos
-    raise "No moves" if non_losing_moves.empty?
+    raise "No moves"
   end
 end
 

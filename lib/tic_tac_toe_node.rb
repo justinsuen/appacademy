@@ -11,37 +11,26 @@ class TicTacToeNode
     @next_mover_mark = next_mover_mark
     # @my_mark = next_mover_mark == :x ? MARKS[1] : MARKS[0]
     @prev_move_pos = prev_move_pos
-    @children = []
+    # @children = []
   end
 
   def losing_node?(evaluator)
-    next_mark = evaluator == :x ? MARKS[1] : MARKS[0]
     if board.over?
-      return board.winner == next_mark
-    elsif next_mover_mark == next_mark
+      return board.won? && board.winner != evaluator
+    elsif next_mover_mark == evaluator
       return children.all? { |child| child.losing_node?(evaluator) }
     else
-      return children.any? do |child|
-        child.children.any? do |grand_child|
-          grand_child.losing_node?(evaluator)
-        end
-      end
+      return children.any? { |node| node.losing_node?(evaluator) }
     end
   end
 
   def winning_node?(evaluator)
-    next_mark = evaluator == :x ? MARKS[1] : MARKS[0]
     if board.over?
-      return board.winner == evaluator
-    elsif next_mover_mark == next_mark
-      return children.any? { |child| child.winning_node?(evaluator) }
+      board.winner == evaluator
+    elsif next_mover_mark == evaluator
+      children.any? { |child| child.winning_node?(evaluator) }
     else
-      return children.all? do |child|
-        child.children.all? do |grand_child|
-          grand_child.winning_node?(evaluator)
-        end
-      end
-
+      children.all? { |node| node.winning_node?(evaluator) }
     end
   end
 
@@ -49,16 +38,16 @@ class TicTacToeNode
   # the current move.
   def children
     empty_tiles = get_empty_tiles
-
+    children = []
     empty_tiles.each do |position|
       test_board = @board.dup
       test_board[position] = @next_mover_mark
       next_mark = @next_mover_mark == :x ? MARKS[1] : MARKS[0]
       next_node = TicTacToeNode.new(test_board, next_mark, position)
-      @children << next_node
+      children << next_node
     end
 
-    @children
+    children
   end
 
   def get_empty_tiles
