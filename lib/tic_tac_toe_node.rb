@@ -1,13 +1,15 @@
 require_relative 'tic_tac_toe'
+# require 'byebug'
 
 class TicTacToeNode
-  attr_reader :board, :next_mover_mark, :prev_move_pos, :my_mark
+  attr_reader :board, :next_mover_mark, :prev_move_pos #:my_mark
+  attr_accessor :children
   MARKS = [:x, :o]
 
   def initialize(board = Board.new, next_mover_mark = MARKS[0], prev_move_pos = nil)
     @board = board
     @next_mover_mark = next_mover_mark
-    @my_mark = next_mover_mark == :x ? MARKS[1] : MARKS[0]
+    # @my_mark = next_mover_mark == :x ? MARKS[1] : MARKS[0]
     @prev_move_pos = prev_move_pos
     @children = []
   end
@@ -61,6 +63,7 @@ class TicTacToeNode
 
   def get_empty_tiles
     empty_tiles = []
+    # debugger
     @board.rows.each_with_index do |row, i|
       row.each_with_index do |_, j|
         empty_tiles << [i, j] if @board.empty?([i, j])
