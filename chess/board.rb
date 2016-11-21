@@ -13,7 +13,17 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
+    raise ArgumentError.new "There is no piece at starting position." if
+      self[start_pos] == nil
+    raise ArgumentError.new "You cannot move the piece there." if !valid_move?
 
+    self[end_pos], self[start_pos] = self[start_pos], nil
+  rescue ArgumentError => e
+    puts "Try again! #{e.message}"
+  end
+
+  def valid_move?
+    true
   end
 
   def populate_board
