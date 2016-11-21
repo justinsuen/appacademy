@@ -16,7 +16,12 @@ class HumanPlayer
   end
 
   def parse(string)
-    string.split(",").map { |x| Integer(x) }
+    begin
+      pos = string.split(",").map { |x| Integer(x) }
+      raise if pos.length != 2
+    rescue
+      puts "Error was: Wrong number of arguments"
+    end
   end
 
   def receive_revealed_card(pos, value)
