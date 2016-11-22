@@ -27,7 +27,7 @@ module SlidingPiece
       curr_y += dy
       pos = [curr_x, curr_y]
 
-      break if !board.in_bounds?(pos)
+      break if !board.in_bounds?(pos) || !board.is_null?(pos)
       possible_moves << pos
     end
 
