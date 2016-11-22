@@ -13,8 +13,9 @@ class Board
     self[pos] = piece
   end
 
-  def check_mate?
-    false
+  def check_mate?(color)
+    in_check?(color) &&
+      rows.none? do |pc| pc.color == color && !pc.valid_moves.nil? }
   end
 
   def fill_pawn_row(color)
@@ -32,9 +33,17 @@ class Board
     end
   end
 
+  def find_king_pos
+    rows.find_index { }
+  end
+
   def in_bounds?(pos)
     row, col = pos
     row.between?(0, rows.length - 1) && col.between?(0, rows[1].length - 1)
+  end
+
+  def in_check?(color)
+    king_pos = find_king_pos
   end
 
   def is_null?(pos)
