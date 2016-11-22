@@ -1,6 +1,11 @@
 require_relative "piece"
 
 class Board
+  PIECE_POSITIONS = {
+    white_rook_pos: [[0, 0], [0, 7]
+    black_rook_pos: [[7, 0], [7, 7]]
+  }
+  
   attr_reader :rows
 
   def self.empty_board
