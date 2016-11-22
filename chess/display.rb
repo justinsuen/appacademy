@@ -8,7 +8,7 @@ class Display
 
   def initialize(board)
     @board = board
-    @cursor = Cursor.new([0, 0], board)
+    @cursor = Cursor.new([7, 0], board)
     @selected = []
   end
 

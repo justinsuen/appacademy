@@ -1,4 +1,5 @@
 require_relative "pieces"
+require "byebug"
 
 class Board
   attr_reader :rows, :null
@@ -13,6 +14,7 @@ class Board
   end
 
   def check_mate?
+    false
   end
 
   def fill_pawn_row(color)
@@ -35,6 +37,10 @@ class Board
     row.between?(0, rows.length - 1) && col.between?(0, rows[1].length - 1)
   end
 
+  def is_null?(pos)
+    self[pos] == null
+  end
+
   def move_piece(color, start_pos, end_pos)
     piece = self[start_pos]
 
@@ -45,10 +51,8 @@ class Board
     raise ArgumentError.new "You cannot move the piece there." if
       !piece.valid_moves.include?(end_pos)
 
-    self[end_pos], self[start_pos] = self[start_pos], null
+    self[end_pos], self[start_pos] = piece, null
     piece.pos = end_pos
-  rescue ArgumentError => e
-    puts "Try again! #{e.message}"
   end
 
   def populate_board
@@ -61,8 +65,8 @@ class Board
     end
   end
 
-  def valid_move?
-    true
+  def valid_move?(pos)
+    in_bounds?(pos) && is_null?(pos)
   end
 
   def [](pos)

@@ -1,6 +1,7 @@
 require_relative "board"
 require_relative "player"
 require_relative "display"
+require "byebug"
 
 class Game
   attr_reader :board, :display, :curr_player, :players
@@ -9,18 +10,24 @@ class Game
     @board = Board.new
     @display = Display.new(@board)
     @players = {
-      white: Player.new(:white, @display),
-      black: Player.new(:black, @display)
+      white: HumanPlayer.new(:white, @display),
+      black: HumanPlayer.new(:black, @display)
     }
     @curr_player = :white
   end
 
   def play
     until board.check_mate?
-      from, to = players[curr_player].make_move
-      board.move_piece(@curr_player, from, to)
-      swap_turn!
-      notify_players
+      begin
+        from, to = players[curr_player].make_move(board)
+        board.move_piece(@curr_player, from, to)
+        swap_turn!
+      rescue ArgumentError => e
+        puts "Try again! #{e.message}"
+        sleep(0.5)
+      ensure
+        notify_players
+      end
     end
 
     display.render

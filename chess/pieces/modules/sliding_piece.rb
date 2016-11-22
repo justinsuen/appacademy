@@ -11,21 +11,26 @@ module SlidingPiece
   end
 
   def moves
-    moves = []
+    possible_moves = []
     move_dir.each do |x, y|
-      moves.concat(generate_moves(x, y))
+      possible_moves.concat(generate_moves(x, y))
     end
-    moves
+    possible_moves
   end
 
   def generate_moves(dx, dy)
-    pos = [self.pos[0] + dx, self.pos[1] + dy]
+    curr_x, curr_y = pos
+    possible_moves = []
 
-    if board.valid_move?(pos) &&
-      (board.empty?(pos) || board[pos].color != color)
-      return pos
+    loop do
+      curr_x += dx
+      curr_y += dy
+      pos = [curr_x, curr_y]
+
+      break if !board.in_bounds?(pos)
+      possible_moves << pos if board.valid_move?(pos)
     end
 
-    []
+    possible_moves
   end
 end
