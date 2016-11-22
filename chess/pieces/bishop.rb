@@ -2,8 +2,14 @@ require_relative "piece"
 require_relative "./modules/sliding_piece"
 
 class Bishop < Piece
+  include SlidingPiece
+
   def initialize(board, color, pos)
     super(board, color, pos)
+  end
+
+  def move_dir
+    diag
   end
 
   def symbol
