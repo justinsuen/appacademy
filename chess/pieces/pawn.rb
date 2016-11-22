@@ -1,7 +1,8 @@
 require_relative "piece"
 
 class Pawn < Piece
-  def initialize(color, rank)
+  def initialize(board, color, pos)
+    super(board, color, pos)
   end
 
   def symbol

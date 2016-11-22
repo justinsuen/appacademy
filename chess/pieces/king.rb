@@ -2,7 +2,8 @@ require_relative "piece"
 require_relative "./modules/stepping_piece"
 
 class King < Piece
-  def initialize(color, rank)
+  def initialize(board, color, pos)
+    super(board, color, pos)
   end
 
   def symbol

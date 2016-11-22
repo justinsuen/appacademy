@@ -1,29 +1,30 @@
 require_relative "pieces"
 
 class Board
-  PIECE_POSITIONS = {
-    wR: [[0, 0], [0, 7]],
-    bR: [[7, 0], [7, 7]],
-    wK: [[0, 3]],
-    bK: [[7, 3]],
-    wQ: [[0, 4]],
-    bQ: [[7, 4]],
-    wB: [[0, 2], [0, 5]],
-    bB: [[7, 2], [7, 5]],
-    wN: [[0, 1], [0, 6]],
-    bN: [[7, 1], [7, 6]]
-  }.freeze
-
   attr_reader :rows
 
-  def self.empty_board
-    null = NullPiece.instance
-    Array.new(8) { Array.new(8, null) }
-  end
-
-  def initialize(rows = Board.empty_board)
+  def initialize
     @rows = rows
     populate_board
+  end
+
+  def add_piece(piece, pos)
+    self[pos] = piece
+  end
+
+  def fill_pawn_row(color)
+    row = (color == :white) ? 6 : 1
+    8.times do |col|
+      Pawn.new(self, color, [row, col])
+    end
+  end
+
+  def fill_back_row(color)
+    back_ranks = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+    row = (color == :white) ? 7 : 0
+    back_ranks.each_with_index do |rank, col|
+      rank.new(self, color, [row, col])
+    end
   end
 
   def in_bounds?(pos)
@@ -42,17 +43,12 @@ class Board
   end
 
   def populate_board
-    color = :black
+    null = NullPiece.instance
+    @rows = Array.new(8) { Array.new(8, null) }
 
-    PIECE_POSITIONS.each do |piece, positions|
-      color == :white ? :black : :white
-      positions.each { |pos| self[pos] = Piece.new(rows, color, pos, piece) }
-    end
-
-    #pawns
-    8.times do |i|
-      self[[1, i]] = Piece.new(rows, :white, [1, i], :wP)
-      self[[6, i]] = Piece.new(rows, :black, [6, i], :bP)
+    [:white, :black].each do |color|
+      fill_back_row(color)
+      fill_pawn_row(color)
     end
   end
 

@@ -2,7 +2,8 @@ require_relative "piece"
 require_relative "./modules/sliding_piece"
 
 class Queen < Piece
-  def initialize(color, rank)
+  def initialize(board, color, pos)
+    super(board, color, pos)
   end
 
   def symbol
