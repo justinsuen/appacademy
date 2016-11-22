@@ -4,11 +4,11 @@ require_relative "piece"
 class NullPiece < Piece
   include Singleton
 
-  def initialize(rank = :null)
-    super(rank)
+  def initialize(board = nil, color = nil, pos = nil, rank = :null)
+    super(board, color, pos, rank)
   end
 
-  def to_s
+  def symbol
     "   "
   end
 end

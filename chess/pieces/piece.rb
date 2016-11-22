@@ -3,18 +3,20 @@ require "colorize"
 class Piece
   RANKS = [:wK, :wQ, :wR, :wB, :wN, :wP, :bK, :bQ, :bR, :bB, :bN, :bP].freeze
   RANK_CODES = ["\u2654", "\u2655", "\u2656", "\u2657", "\u2658", "\u2659",
-                "\u265A", "\u265B", "\u265C", "\u265D", "\u265E", "\u265F"].freeze
+               "\u265A", "\u265B", "\u265C", "\u265D", "\u265E", "\u265F"].freeze
 
-  attr_reader :rank
+  attr_reader :rank, :board, :color
+  attr_accessor :pos
 
-  def initialize(rank)
-    @rank = rank
+  def initialize(board, color, pos, rank)
+    @board, @color, @pos, @rank = board, color, pos, rank
   end
 
   def moves
   end
 
   def to_s
+    # symbol
     RANKS.each_with_index do |r, i|
       return " #{RANK_CODES[i].encode('utf-8')} " if rank == r
     end
