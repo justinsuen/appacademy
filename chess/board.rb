@@ -18,6 +18,22 @@ class Board
       rows.flatten.none? { |pc| pc.color == color && !pc.valid_moves.nil? }
   end
 
+  def dup
+    dup_board = Board.new
+    rows.each_with_index do |row, i|
+      row.each_with_index do |pc, j|
+        pos = [i, j]
+        if pc.class != NullPiece
+          dup_board[pos] = pc.class.new(dup_board, pc.color, pos)
+        else
+          dup_board[pos] = @null
+        end
+      end
+    end
+
+    dup_board
+  end
+
   def fill_pawn_row(color)
     row = (color == :white) ? 6 : 1
     8.times do |col|

@@ -20,4 +20,8 @@ class Piece
       (board.is_null?(pos) || board[pos].color != color)
     end
   end
+
+  def moves_into_check?(end_pos)
+    
+  end
 end
