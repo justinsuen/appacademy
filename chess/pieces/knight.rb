@@ -2,6 +2,8 @@ require_relative "piece"
 require_relative "./modules/stepping_piece"
 
 class Knight < Piece
+  include SteppingPiece
+
   def initialize(board, color, pos)
     super(board, color, pos)
   end

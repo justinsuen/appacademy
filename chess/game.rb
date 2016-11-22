@@ -24,9 +24,9 @@ class Game
         swap_turn!
       rescue ArgumentError => e
         puts "Try again! #{e.message}"
-        sleep(0.5)
       ensure
         notify_players
+        sleep(1)
       end
     end
 
@@ -37,7 +37,7 @@ class Game
   private
 
   def notify_players
-    puts "Current player is #{curr_player}"
+    puts "Next player is #{curr_player}"
   end
 
   def swap_turn!
