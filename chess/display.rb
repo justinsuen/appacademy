@@ -24,10 +24,7 @@ class Display
       piece.to_s.colorize(color)
     end
   end
-
-  def move(new_pos)
-  end
-
+  
   def render
     loop do
       system "clear"
@@ -51,10 +48,4 @@ class Display
     end
     { background: bg }
   end
-end
-
-if __FILE__ == $PROGRAM_NAME
-  b = Board.new
-  disp = Display.new(b)
-  disp.render
 end

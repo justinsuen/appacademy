@@ -12,6 +12,9 @@ class Board
     self[pos] = piece
   end
 
+  def check_mate?
+  end
+
   def fill_pawn_row(color)
     row = (color == :white) ? 6 : 1
     8.times do |col|
@@ -32,11 +35,13 @@ class Board
     row.between?(0, rows.length - 1) && col.between?(0, rows[1].length - 1)
   end
 
-  def move_piece!(start_pos, end_pos)
+  def move_piece(color, start_pos, end_pos)
     piece = self[start_pos]
 
+    # possible errors while moving a piece
+    raise ArgumentError.new "This is not your piece!" if piece.color != color
     raise ArgumentError.new "There is no piece at starting position." if
-      self[start_pos] == nil
+      piece == nil
     raise ArgumentError.new "You cannot move the piece there." if
       !piece.valid_moves.include?(end_pos)
 
