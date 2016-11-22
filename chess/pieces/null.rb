@@ -1,11 +1,12 @@
+require "singleton"
 require_relative "piece"
 
 class NullPiece < Piece
-  def initialize(rank)
-    super(rank)
-  end
+  attr_reader :symbol, :color
+  include Singleton
 
-  def to_s
-    "   "
+  def initialize
+    @symbol = "   "
+    @color = :none
   end
 end

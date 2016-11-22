@@ -8,7 +8,7 @@ class Display
 
   def initialize(board)
     @board = board
-    @cursor = Cursor.new([0, 0], board)
+    @cursor = Cursor.new([7, 0], board)
     @selected = []
   end
 
@@ -25,18 +25,10 @@ class Display
     end
   end
 
-  def move(new_pos)
-  end
-
   def render
-    loop do
-      system "clear"
-      puts "Navigate using WASD or arrow keys."
-      build_display_grid.each { |row| puts row.join("") }
-      cursor.get_input
-
-      sleep(0.5)
-    end
+    system "clear"
+    puts "Navigate using WASD or arrow keys."
+    build_display_grid.each { |row| puts row.join("") }
   end
 
   def set_color(i, j)
@@ -51,10 +43,4 @@ class Display
     end
     { background: bg }
   end
-end
-
-if __FILE__ == $PROGRAM_NAME
-  b = Board.new
-  disp = Display.new(b)
-  disp.render
 end
