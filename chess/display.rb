@@ -31,7 +31,7 @@ class Display
   def render
     loop do
       system "clear"
-      puts "Navigate using WASD keys."
+      puts "Navigate using WASD or arrow keys."
       build_display_grid.each { |row| puts row.join("") }
       cursor.get_input
 
@@ -40,8 +40,7 @@ class Display
   end
 
   def set_color(i, j)
-    if (cursor.cursor_pos == [i, j] && cursor.selected) ||
-      selected.include?([i, j])
+    if cursor.cursor_pos == [i, j] && cursor.selected
       bg = :green
     elsif cursor.cursor_pos == [i, j]
       bg = :light_yellow
