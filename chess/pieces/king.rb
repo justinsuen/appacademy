@@ -3,9 +3,15 @@ require_relative "./modules/stepping_piece"
 
 class King < Piece
   include SteppingPiece
+  DELTA = [[0, 1], [1, 0], [0, -1], [-1, 0],
+           [1, 1], [1, -1], [-1, 1], [-1, -1]]
 
   def initialize(board, color, pos)
     super(board, color, pos)
+  end
+
+  def move_diff
+    DELTA
   end
 
   def symbol
