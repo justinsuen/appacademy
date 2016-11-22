@@ -1,15 +1,20 @@
 require_relative "piece"
 
 class Board
-  attr_reader :board
+  attr_reader :rows
 
   def self.empty_board
-    Array.new(8) { Array.new(8) }
+    Array.new(8) { Array.new(8, NullPiece.new(:null)) }
   end
 
-  def initialize(board = Board.empty_board)
-    @board = board
+  def initialize(rows = Board.empty_board)
+    @rows = rows
     populate_board
+  end
+
+  def in_bounds?(pos)
+    row, col = pos
+    row.between?(0, rows.length - 1) && col.between?(0, rows[1].length - 1)
   end
 
   def move_piece(start_pos, end_pos)
@@ -20,10 +25,6 @@ class Board
     self[end_pos], self[start_pos] = self[start_pos], nil
   rescue ArgumentError => e
     puts "Try again! #{e.message}"
-  end
-
-  def valid_move?
-    true
   end
 
   def populate_board
@@ -49,13 +50,17 @@ class Board
     end
   end
 
+  def valid_move?
+    true
+  end
+
   def [](pos)
     row, col = pos
-    board[row][col]
+    rows[row][col]
   end
 
   def []=(pos, piece)
     row, col = pos
-    board[row][col] = piece
+    rows[row][col] = piece
   end
 end

@@ -1,16 +1,25 @@
-class Piece
-  attr_reader :type
+require "colorize"
 
-  def initialize(type)
-    @type = type
+class Piece
+  attr_reader :rank
+
+  def initialize(rank)
+    @rank = rank
   end
 
   def to_s
-    type
+    rank.to_s + " "
   end
 end
 
 class NullPiece < Piece
+  def initialize(rank)
+    super(rank)
+  end
+
+  def to_s
+    "  "
+  end
 end
 
 class King < Piece
