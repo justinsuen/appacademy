@@ -11,19 +11,12 @@ class Piece
     @rank = rank
   end
 
+  def moves
+  end
+
   def to_s
     RANKS.each_with_index do |r, i|
       return " #{RANK_CODES[i].encode('utf-8')} " if rank == r
     end
-  end
-end
-
-class NullPiece < Piece
-  def initialize(rank)
-    super(rank)
-  end
-
-  def to_s
-    "   "
   end
 end

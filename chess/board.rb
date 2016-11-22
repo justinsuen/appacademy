@@ -1,4 +1,4 @@
-require_relative "pieces/piece"
+require_relative "pieces"
 
 class Board
   PIECE_POSITIONS = {
@@ -17,7 +17,8 @@ class Board
   attr_reader :rows
 
   def self.empty_board
-    Array.new(8) { Array.new(8, NullPiece.new(:null)) }
+    null = NullPiece.instance
+    Array.new(8) { Array.new(8, null) }
   end
 
   def initialize(rows = Board.empty_board)

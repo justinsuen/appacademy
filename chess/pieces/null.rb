@@ -1,7 +1,10 @@
+require "singleton"
 require_relative "piece"
 
 class NullPiece < Piece
-  def initialize(rank)
+  include Singleton
+
+  def initialize(rank = :null)
     super(rank)
   end
 
