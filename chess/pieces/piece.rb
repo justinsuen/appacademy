@@ -15,6 +15,9 @@ class Piece
   end
 
   def valid_moves
-    moves
+    moves.select do |pos|
+      board.in_bounds?(pos) &&
+      (board.is_null?(pos) || board[pos].color != color)
+    end
   end
 end

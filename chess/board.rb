@@ -15,7 +15,7 @@ class Board
 
   def check_mate?(color)
     in_check?(color) &&
-      rows.none? do |pc| pc.color == color && !pc.valid_moves.nil? }
+      rows.flatten.none? { |pc| pc.color == color && !pc.valid_moves.nil? }
   end
 
   def fill_pawn_row(color)
@@ -33,8 +33,25 @@ class Board
     end
   end
 
-  def find_king_pos
-    rows.find_index { }
+  def find_king_pos(color)
+    rows.each_with_index do |row, i|
+      row.each_with_index do |_, j|
+        pc = self[[i, j]]
+        return [i, j] if pc.class == King && pc.color == color
+      end
+    end
+  end
+
+  def get_all_moves(color)
+    all_moves = []
+    rows.each_with_index do |row, i|
+      row.each_with_index do |_, j|
+        pc = self[[i, j]]
+        all_moves.concat(pc.valid_moves) if pc.color == color && pc.class != Pawn
+      end
+    end
+
+    all_moves
   end
 
   def in_bounds?(pos)
@@ -43,7 +60,9 @@ class Board
   end
 
   def in_check?(color)
-    king_pos = find_king_pos
+    other_color = (color == :white) ? :black : :white
+    king_pos = find_king_pos(color)
+    get_all_moves(other_color).include?(king_pos)
   end
 
   def is_null?(pos)
@@ -72,10 +91,6 @@ class Board
       fill_back_row(color)
       fill_pawn_row(color)
     end
-  end
-
-  def valid_move?(pos)
-    in_bounds?(pos) && is_null?(pos)
   end
 
   def [](pos)

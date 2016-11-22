@@ -28,7 +28,7 @@ module SlidingPiece
       pos = [curr_x, curr_y]
 
       break if !board.in_bounds?(pos)
-      possible_moves << pos if board.valid_move?(pos)
+      possible_moves << pos
     end
 
     possible_moves

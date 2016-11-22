@@ -9,9 +9,6 @@ module SteppingPiece
   end
 
   def generate_moves(dx, dy)
-    possible_move = [@pos[0] + dx, @pos[1] + dy]
-    return [possible_move] if board.valid_move?(possible_move)
-
-    []
+    [[@pos[0] + dx, @pos[1] + dy]]
   end
 end
