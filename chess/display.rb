@@ -24,16 +24,11 @@ class Display
       piece.to_s.colorize(color)
     end
   end
-  
-  def render
-    loop do
-      system "clear"
-      puts "Navigate using WASD or arrow keys."
-      build_display_grid.each { |row| puts row.join("") }
-      cursor.get_input
 
-      sleep(0.5)
-    end
+  def render
+    system "clear"
+    puts "Navigate using WASD or arrow keys."
+    build_display_grid.each { |row| puts row.join("") }
   end
 
   def set_color(i, j)
