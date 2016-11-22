@@ -13,13 +13,11 @@ class Piece
     board.add_piece(self, pos)
   end
 
-  def moves
-  end
-
   def to_s
     symbol
-    # RANKS.each_with_index do |r, i|
-    #   return " #{RANK_CODES[i].encode('utf-8')} " if rank == r
-    # end
+  end
+
+  def valid_moves
+    moves
   end
 end

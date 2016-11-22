@@ -1,7 +1,7 @@
 require_relative "pieces"
 
 class Board
-  attr_reader :rows
+  attr_reader :rows, :null
 
   def initialize
     @rows = rows
@@ -32,18 +32,22 @@ class Board
     row.between?(0, rows.length - 1) && col.between?(0, rows[1].length - 1)
   end
 
-  def move_piece(start_pos, end_pos)
+  def move_piece!(start_pos, end_pos)
+    piece = self[start_pos]
+
     raise ArgumentError.new "There is no piece at starting position." if
       self[start_pos] == nil
-    raise ArgumentError.new "You cannot move the piece there." if !valid_move?
+    raise ArgumentError.new "You cannot move the piece there." if
+      !piece.valid_moves.include?(end_pos)
 
-    self[end_pos], self[start_pos] = self[start_pos], nil
+    self[end_pos], self[start_pos] = self[start_pos], null
+    piece.pos = end_pos
   rescue ArgumentError => e
     puts "Try again! #{e.message}"
   end
 
   def populate_board
-    null = NullPiece.instance
+    @null = NullPiece.instance
     @rows = Array.new(8) { Array.new(8, null) }
 
     [:white, :black].each do |color|
