@@ -60,8 +60,7 @@ class Board
   def in_check?(color)
     king_pos = find_king_pos(color).pos
 
-    pieces = get_pieces
-    pieces.any? do |pc|
+    get_pieces.any? do |pc|
       pc.color != color && pc.moves.include?(king_pos)
     end
   end

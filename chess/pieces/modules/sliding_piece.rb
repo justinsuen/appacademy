@@ -31,6 +31,9 @@ module SlidingPiece
       break if !board.is_null?(pos) unless board[pos].color != color
 
       possible_moves << pos
+
+      break if !board.is_null?(pos)
+
     end
 
     possible_moves
