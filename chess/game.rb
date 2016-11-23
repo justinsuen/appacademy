@@ -37,6 +37,12 @@ class Game
   private
 
   def notify_players
+    debugger
+    if board.check_mate?(curr_player)
+      puts "Checkmate!"
+      return
+    end
+
     puts "#{curr_player} is in check!" if board.in_check?(curr_player)
     puts "Next player is #{curr_player}"
   end

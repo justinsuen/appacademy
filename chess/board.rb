@@ -14,8 +14,11 @@ class Board
   end
 
   def check_mate?(color)
-    in_check?(color) &&
-      rows.flatten.none? { |pc| pc.color == color && !pc.valid_moves.nil? }
+    return false unless in_check?(color)
+
+    rows.flatten.select { |pc| pc.color == color }.all? do |pc|
+      pc.valid_moves.empty?
+    end
   end
 
   def dup
