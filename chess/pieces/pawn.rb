@@ -17,7 +17,7 @@ class Pawn < Piece
     color == :white ? -1 : 1
   end
 
-  def valid_moves
+  def moves
     forward_moves.concat(attack_moves)
   end
 
@@ -35,15 +35,12 @@ class Pawn < Piece
 
   def attack_moves
     curr_x, curr_y = pos
-    possible_moves = []
 
     right = [curr_x + forward_dir, curr_y + 1]
     left = [curr_x + forward_dir, curr_y -1]
 
-    [right, left].each do |move|
-      possible_moves << move if board[move].color != color
+    [right, left].select do |el|
+      board.in_bounds?(el) && board[el].color != color
     end
-
-    possible_moves
   end
 end

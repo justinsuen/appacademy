@@ -4,9 +4,9 @@ require "byebug"
 class Board
   attr_reader :rows, :null
 
-  def initialize
+  def initialize(fill = true)
     @rows = rows
-    populate_board
+    populate_board(fill)
   end
 
   def add_piece(piece, pos)
@@ -19,18 +19,8 @@ class Board
   end
 
   def dup
-    dup_board = Board.new
-    rows.each_with_index do |row, i|
-      row.each_with_index do |pc, j|
-        pos = [i, j]
-        if pc.class != NullPiece
-          dup_board[pos] = pc.class.new(dup_board, pc.color, pos)
-        else
-          dup_board[pos] = @null
-        end
-      end
-    end
-
+    dup_board = Board.new(fill = false)
+    get_pieces.each { |pc| pc.class.new(dup_board, pc.color, pc.pos) }
     dup_board
   end
 
@@ -53,21 +43,13 @@ class Board
     rows.each_with_index do |row, i|
       row.each_with_index do |_, j|
         pc = self[[i, j]]
-        return [i, j] if pc.class == King && pc.color == color
+        return pc if pc.class == King && pc.color == color
       end
     end
   end
 
-  def get_all_moves(color)
-    all_moves = []
-    rows.each_with_index do |row, i|
-      row.each_with_index do |_, j|
-        pc = self[[i, j]]
-        all_moves.concat(pc.valid_moves) if pc.color == color && pc.class != Pawn
-      end
-    end
-
-    all_moves
+  def get_pieces
+    @rows.flatten.reject { |piece| piece == null }
   end
 
   def in_bounds?(pos)
@@ -76,9 +58,12 @@ class Board
   end
 
   def in_check?(color)
-    other_color = (color == :white) ? :black : :white
-    king_pos = find_king_pos(color)
-    get_all_moves(other_color).include?(king_pos)
+    king_pos = find_king_pos(color).pos
+
+    pieces = get_pieces
+    pieces.any? do |pc|
+      pc.color != color && pc.moves.include?(king_pos)
+    end
   end
 
   def is_null?(pos)
@@ -91,22 +76,29 @@ class Board
     # possible errors while moving a piece
     raise ArgumentError.new "This is not your piece!" if piece.color != color
     raise ArgumentError.new "There is no piece at starting position." if
-      piece == nil
+      piece == null
     raise ArgumentError.new "You cannot move the piece there." if
+      !in_bounds?(end_pos) || self[end_pos].color == color ||
       !piece.valid_moves.include?(end_pos)
 
+    move_piece!(color, start_pos, end_pos)
+    nil
+  end
+
+  def move_piece!(color, start_pos, end_pos)
+    piece = self[start_pos]
     self[end_pos], self[start_pos] = piece, null
     piece.pos = end_pos
   end
 
-  def populate_board
+  def populate_board(fill)
     @null = NullPiece.instance
     @rows = Array.new(8) { Array.new(8, null) }
 
     [:white, :black].each do |color|
       fill_back_row(color)
       fill_pawn_row(color)
-    end
+    end if fill
   end
 
   def [](pos)

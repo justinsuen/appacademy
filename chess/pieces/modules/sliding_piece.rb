@@ -27,7 +27,9 @@ module SlidingPiece
       curr_y += dy
       pos = [curr_x, curr_y]
 
-      break if !board.in_bounds?(pos) || !board.is_null?(pos)
+      break if !board.in_bounds?(pos)
+      break if !board.is_null?(pos) unless board[pos].color != color
+
       possible_moves << pos
     end
 
