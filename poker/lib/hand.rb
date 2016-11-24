@@ -6,15 +6,15 @@ class Hand
 
   attr_reader :hand
 
-  def initialize(hand = [])
+  def initialize(hand = [], deck = [])
     @hand = hand.sort_by(&:rank)
+    @deck = deck
   end
 
-  def add_cards(num_cards)
-    num_cards.times do
-      deck.add_card(hand.shift)
-      hand << deck.remove_card
-    end
+  def trade_card(pos)
+    delete_card = hand.delete_at(pos)
+    deck.add_card(delete_card)
+    hand << deck.remove_card #will split into discard, and take_card methods
   end
 
   def winning_hand?(other_hand)
