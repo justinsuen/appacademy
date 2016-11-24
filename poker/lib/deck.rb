@@ -1,8 +1,8 @@
 require_relative "card"
 
 class Deck
-  RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10, :j, :q, :k, :a]
-  SUITS = [:diamond, :spade, :hearts, :club]
+  RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  SUITS = [:diamond, :spade, :heart, :club]
 
   attr_reader :cards
 
@@ -33,5 +33,9 @@ class Deck
   def remove_card
     raise "Deck is empty" if cards.empty?
     cards.shift
+  end
+
+  def shuffle_deck
+    cards.shuffle!
   end
 end
