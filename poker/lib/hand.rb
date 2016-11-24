@@ -16,4 +16,8 @@ class Hand
       hand << deck.remove_card
     end
   end
+
+  def winning_hand?(other_hand)
+    self.rank > other_hand.rank
+  end
 end

@@ -1,5 +1,14 @@
 module PokerHands
 
+  def rank
+    return 6 if straight_flush?
+    return 5 if flush?
+    return 4 if straight?
+    return 3 if three_of_kind?
+    return 2 if one_pair?
+    1
+  end
+
   def count(card)
     ranks = hand.map(&:rank)
     ranks.count(card.rank)
@@ -25,10 +34,6 @@ module PokerHands
     false
   end
 
-  def flush?
-    suit = hand[0].suit
-    hand.all? { |card| card.suit == suit }
-  end
 
   def straight?
     hand[0..3].each_with_index do |_, i|
@@ -36,6 +41,11 @@ module PokerHands
     end
 
     true
+  end
+
+  def flush?
+    suit = hand[0].suit
+    hand.all? { |card| card.suit == suit }
   end
 
   def straight_flush?
