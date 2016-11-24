@@ -1,7 +1,7 @@
-# O(n! * n)
+# O(n! * w)
 def first_anagram?(word1, word2)
   letters1 = word1.split('').permutation.to_a # O(n!)
-  anagrams1 = letters1.map(&:join) # O(n! * n)
+  anagrams1 = letters1.map(&:join) # O(n! * w)
 
   anagrams1.include?(word2) # O(n!)
 end
