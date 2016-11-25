@@ -15,7 +15,7 @@ class LRUCache
   end
 
   def get(key)
-    if @map.include?(key)
+    if @map.include?(key) # depends on collisions?
       link = @map[key]
       update_link!(link)
     else
