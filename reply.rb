@@ -1,6 +1,7 @@
 require_relative 'questions_database'
+require_relative 'model_base'
 
-class Reply
+class Reply < ModelBase
   attr_accessor :question_id, :reply_parent_id, :user_id, :body
 
   def initialize(options)
@@ -9,20 +10,6 @@ class Reply
     @reply_parent_id = options['reply_parent_id']
     @user_id = options['user_id']
     @body = options['body']
-  end
-
-  def self.find_by_id(id)
-    reply = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        replies
-      WHERE
-        id = ?
-    SQL
-
-    raise "Reply with ID #{id} not in database!" if reply.empty?
-    Reply.new(reply.first)
   end
 
   def self.find_by_user_id(user_id)
