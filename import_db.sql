@@ -57,19 +57,26 @@ INSERT INTO
   users (fname, lname)
 VALUES
   ('Adom', 'Hartell'),
-  ('Justin', 'Suen');
+  ('Justin', 'Suen'),
+  ('Edwin', 'La');
 
 INSERT INTO
   questions (title, body, author_id)
 VALUES
   ('My Question', 'How do?', 1),
-  ('Puppy Question', 'Tibetan Mastiff vs Golden Retriever... Who wins?', 2);
+  ('Puppy Question', 'Tibetan Mastiff vs Golden Retriever... Who wins?', 2),
+  ('My Question 2', 'How do I?', 1),
+  ('My Question 3', 'How do I eat?', 1);
 
 INSERT INTO
   question_follows (question_id, user_id)
 VALUES
   (1, 1),
-  (1, 2);
+  (1, 2),
+  (2, 1),
+  (2, 2),
+  (2, 3),
+  (3, 3);
 
 INSERT INTO
   replies (question_id, reply_parent_id, user_id, body)

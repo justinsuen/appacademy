@@ -51,4 +51,8 @@ class User
   def followed_questions
     QuestionFollow.followed_questions_for_user_id(@id)
   end
+
+  def liked_questions
+    QuestionFollow.liked_questions_for_user_id(@id)
+  end
 end
