@@ -50,9 +50,31 @@ class Play
     SQL
   end
 
-  def find_by_playwright(name)
+  def self.find_by_playwright(name)
+    plays = PlayDBConnection.instance.execute(<<-SQL, name)
+      SELECT
+        *
+      FROM
+        plays
+        JOIN playwrights p ON playwright_id = p.id
+      WHERE
+        name = ?
+    SQL
+
+    plays.map { |play| Play.new(play) }
   end
 
-  def find_by_title(title)
+  def self.find_by_title(title)
+    play = PlayDBConnection.instance.execute(<<-SQL, title)
+      SELECT
+        *
+      FROM
+        plays
+      WHERE
+        title = ?
+    SQL
+    return nil unless play.length > 0
+
+    Play.new(play.first)
   end
 end
