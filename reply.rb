@@ -65,26 +65,4 @@ class Reply < ModelBase
     raise "Reply with id #{@id} has no children!" if children.empty?
     children.map { |child| Reply.new(child) }
   end
-
-  def save
-    if @id.nil?
-      QuestionsDatabase.instance.execute(<<-SQL, @question_id, @reply_parent_id, @user_id, @body)
-        INSERT INTO
-          replies (question_id, reply_parent_id, user_id, body)
-        VALUES
-          (?, ?, ?, ?)
-      SQL
-
-      @id = QuestionsDatabase.instance.last_insert_row_id
-    else
-      QuestionsDatabase.instance.execute(<<-SQL, @question_id, @reply_parent_id, @user_id, @body, @id)
-        UPDATE
-          replies
-        SET
-          question_id = ?, reply_parent_id = ?, user_id = ?, body = ?
-        WHERE
-          id = ?
-      SQL
-    end
-  end
 end

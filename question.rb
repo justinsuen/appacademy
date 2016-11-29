@@ -55,26 +55,4 @@ class Question < ModelBase
   def replies
     Reply.find_by_question_id(@id)
   end
-
-  def save
-    if @id.nil?
-      QuestionsDatabase.instance.execute(<<-SQL, @title, @body, @author_id)
-        INSERT INTO
-          question (title, body, author_id)
-        VALUES
-          (?, ?, ?)
-      SQL
-
-      @id = QuestionsDatabase.instance.last_insert_row_id
-    else
-      QuestionsDatabase.instance.execute(<<-SQL, @title, @body, @author_id, @id)
-        UPDATE
-          questions
-        SET
-          title = ?, body = ?, author_id = ?
-        WHERE
-          id = ?
-      SQL
-    end
-  end
 end
