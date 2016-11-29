@@ -52,3 +52,34 @@ CREATE TABLE question_likes (
   FOREIGN KEY (question_id) REFERENCES questions(id),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+INSERT INTO
+  users (fname, lname)
+VALUES
+  ('Adom', 'Hartell'),
+  ('Justin', 'Suen');
+
+INSERT INTO
+  questions (title, body, author_id)
+VALUES
+  ('My Question', 'How do?', 1),
+  ('Puppy Question', 'Tibetan Mastiff vs Golden Retriever... Who wins?', 2);
+
+INSERT INTO
+  question_follows (question_id, user_id)
+VALUES
+  (1, 1),
+  (1, 2);
+
+INSERT INTO
+  replies (question_id, reply_parent_id, user_id, body)
+VALUES
+  (2, NULL, 1, 'No violence!'),
+  (2, 1, 2, 'Pug wins.');
+
+INSERT INTO
+  question_likes (user_id, question_id)
+VALUES
+  (1, 2),
+  (2, 2),
+  (1, 1);
