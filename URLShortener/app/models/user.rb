@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     class_name: :Visit
 
   has_many :visited_urls,
+    Proc.new { distinct },
     through: :visits,
     source: :shortened_urls
 end
