@@ -17,4 +17,9 @@ ActiveRecord::Base.transaction do
   short_1 = ShortenedUrl.create(user_id: 1, short_url: "short_url", long_url: "looooooooooong_url")
   short_2 = ShortenedUrl.create(user_id: 2, short_url: "short2", long_url: "long2")
 
+  Visit.destroy_all
+  visit_1 = Visit.create(user_id: 1, shortened_url: "short_url")
+  visit_2 = Visit.create(user_id: 1, shortened_url: "short2")
+  visit_3 = Visit.create(user_id: 2, shortened_url: "short_url")
+  visit_4 = Visit.create(user_id: 1, shortened_url: "short_url")
 end
