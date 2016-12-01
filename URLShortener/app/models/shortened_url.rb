@@ -15,7 +15,7 @@ class ShortenedUrl < ActiveRecord::Base
   has_many :visitors,
     Proc.new { distinct },
     through: :clicks,
-    source: :users
+    source: :users    
 
   def self.random_code
     new_url = SecureRandom::urlsafe_base64
