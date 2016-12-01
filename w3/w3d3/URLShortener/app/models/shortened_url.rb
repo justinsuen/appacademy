@@ -20,11 +20,11 @@ class ShortenedUrl < ActiveRecord::Base
     source: :users
 
   def less_than_five_posts_one_minute
-    links = ShortenedUrl.all.where("created_at > ?", 1.minute.ago).group(:user_id).count
+    links = ShortenedUrl.all.where("created_at > ?", 5.minute.ago).group(:user_id).count
     if links.empty? || links[user_id].nil?
       return
     elsif links[user_id] > 5
-      errors.add(:user_id, "can't shorten too quickly")
+      errors.add(:user_id, "can't shorten too quickly") unless User.find_by_id(user_id).premium
     end
   end
 
