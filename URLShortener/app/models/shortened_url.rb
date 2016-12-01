@@ -1,6 +1,8 @@
 class ShortenedUrl < ActiveRecord::Base
   validates :user_id, :short_url, :long_url, presence: true
   validates :short_url, uniqueness: true
+  validates :long_url, length: { maximum: 1024 }
+  validate :less_than_five_posts_one_minute
 
   belongs_to :submitter,
     primary_key: :id,
@@ -15,7 +17,16 @@ class ShortenedUrl < ActiveRecord::Base
   has_many :visitors,
     Proc.new { distinct },
     through: :clicks,
-    source: :users    
+    source: :users
+
+  def less_than_five_posts_one_minute
+    links = ShortenedUrl.all.where("created_at > ?", 1.minute.ago).group(:user_id).count
+    if links.empty? || links[user_id].nil?
+      return
+    elsif links[user_id] > 5
+      errors.add(:user_id, "can't shorten too quickly")
+    end
+  end
 
   def self.random_code
     new_url = SecureRandom::urlsafe_base64
