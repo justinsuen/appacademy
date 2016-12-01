@@ -41,6 +41,11 @@ class ShortenedUrl < ActiveRecord::Base
                          long_url: long_url)
   end
 
+  def self.prune_old_short_urls(n)
+    time = n.minutes.ago
+    ShortenedUrl.where("updated_at < ?", time).delete_all
+  end
+
   def num_clicks
     clicks.count
   end
