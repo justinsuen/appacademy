@@ -1,0 +1,59 @@
+def prompt_email
+  puts "Please put your email:"
+  print "> "
+  gets.chomp
+end
+
+def find_email(email)
+  User.find_by_email(email)
+end
+
+def get_action
+  puts "\nWhat would you like to do?"
+  puts "0. Create shortened URL"
+  puts "1. Visit shortened URL"
+
+  gets.chomp
+end
+
+def perform_action(action, user)
+  if action == "0"
+    create_short_url(user)
+  elsif action == "1"
+    visit_short_url
+  end
+end
+
+def prompt_for_long_url
+  puts "\nType in your long url"
+  print "> "
+  gets.chomp
+end
+
+def create_short_url(user)
+  short = ShortenedUrl.create_for_user_and_long_url!(user, prompt_for_long_url)
+  puts "Your short url: #{short.short_url}"
+  puts "Goodbye!"
+end
+
+def prompt_for_short_url
+  puts "\nType in your short url"
+  print "> "
+  gets.chomp
+end
+
+def visit_short_url
+  url_obj = ShortenedUrl.find_by_short_url(prompt_for_short_url)
+  puts "\nLaunching #{url_obj.long_url}..."
+  puts "Goodbye!"
+  Launchy.open(url_obj.long_url)
+end
+
+def main
+  email = prompt_email
+  user = User.find_by_email(email)
+  action = get_action
+  perform_action(action, user)
+end
+
+main
