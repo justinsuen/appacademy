@@ -54,10 +54,10 @@ module Associatable
     define_method(name) do
       options = self.class.assoc_options[name]
 
-      foreign_id = send(options.foreign_key)
+      foreign_val = send(options.foreign_key)
       foreign_class = options.model_class
 
-      foreign_class.where(options.primary_key => foreign_id).first
+      foreign_class.where(options.primary_key => foreign_val).first
     end
   end
 
@@ -67,10 +67,10 @@ module Associatable
     define_method(name) do
       options = self.class.assoc_options[name]
 
-      foreign_id = send(options.primary_key)
+      foreign_val = send(options.primary_key)
       foreign_class = options.model_class
 
-      foreign_class.where(options.foreign_key => foreign_id)
+      foreign_class.where(options.foreign_key => foreign_val)
     end
   end
 
