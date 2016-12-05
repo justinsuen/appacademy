@@ -24,15 +24,35 @@ class UsersController < ApplicationController
   end
 
   def show
-    render text: "I'm in the show action!"
+    @user = User.find_by_id(params[:id])
+
+    if @user
+      render json: @user
+    else
+      render text: "No user with ID #{params[:id]}"
+    end
   end
 
   def update
-    render text: "I'm in the update action!"
+    @user = User.find_by_id(params[:id])
+
+    if @user
+      @user.update(user_params)
+      render json: @user
+    else
+      render text: "No user with ID #{params[:id]}"
+    end
   end
 
   def destroy
-    render text: "I'm in the destroy action!"
+    @user = User.find_by_id(params[:id])
+
+    if @user
+      @user.destroy
+      render json: @user
+    else
+      render text: "No user with ID #{params[:id]}"
+    end
   end
 
   private
