@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    render text: "I'm in the index action!"
+    render json: {'a_key' => 'a value'}
+    # render text: "I'm in the index action!"
   end
 
   def create
