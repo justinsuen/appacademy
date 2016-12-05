@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   def index
-    render json: {'a_key' => 'a value'}
-    # render text: "I'm in the index action!"
+    @users = User.all
+    render json: @users
   end
 
   def create
-    render text: "I'm in the create action!"
+    @user = User.new(user_params)
+    @user.save!
+    render json: @user
   end
 
   def new
@@ -26,5 +28,10 @@ class UsersController < ApplicationController
 
   def destroy
     render text: "I'm in the destroy action!"
+  end
+
+  private
+  def user_params
+    params[:user].permit(:name, :email)
   end
 end
