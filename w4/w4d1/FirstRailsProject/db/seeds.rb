@@ -8,7 +8,10 @@
 
 ActiveRecord::Base.transaction do
   User.destroy_all
-  user_1 = User.create(name: "Kobe Bryant", email: "kobe@bryant.com")
-  user_2 = User.create(name: "Steph Curry", email: "steph@curry.com")
-  user_3 = User.create(name: "Lebron James", email: "lebron@james.com")
+  user_1 = User.create(username: "kobebryant")
+  user_2 = User.create(username: "stephcurry")
+  user_3 = User.create(username: "lebronjames")
+
+  Contact.destroy_all
+  contact_1 = Contact.create(name: "Luke Walton", email: "luke@walton.com", user_id: 7)
 end
