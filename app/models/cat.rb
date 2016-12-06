@@ -20,6 +20,6 @@ class Cat < ActiveRecord::Base
   validates :color, inclusion: { in: COLORS }
 
   def age
-    (Date.today - birth_date).to_i / 365
+    ((Date.today - birth_date).to_i / 365.0).round(1)
   end
 end
