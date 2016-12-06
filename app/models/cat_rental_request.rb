@@ -16,8 +16,15 @@ class CatRentalRequest < ActiveRecord::Base
   validates :status, inclusion: { in: %w(PENDING APPROVED DENIED),
     message: "Invalid status" }
   validate :overlapping_approved_requests
+  validate :valid_dates?
 
   belongs_to :cat
+
+  def valid_dates?
+    if start_date >= end_date
+      errors[:id] << "No time travel"
+    end
+  end
 
   def overlapping_requests?(other_req)
     (self.start_date - other_req.end_date) * (other_req.start_date - self.end_date) >= 0
@@ -27,7 +34,7 @@ class CatRentalRequest < ActiveRecord::Base
     approved_req = CatRentalRequest.all.where(status: "APPROVED")
     approved_req.each do |request|
       if self.overlapping_requests?(request)
-        errors[:cat_id] << "Requests cannot overlap"
+        errors[:id] << "Requests cannot overlap"
       end
     end
   end
