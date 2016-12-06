@@ -29,7 +29,7 @@ class CatsController < ApplicationController
   end
 
   def edit
-    @cat = Cat.find_by(id: cat_params[:id])
+    @cat = Cat.find_by(id: params[:id])
     render :edit
   end
 

@@ -11,8 +11,12 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+require 'action_view'
+require 'action_view/helpers'
 
 class Cat < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   COLORS = ["black", "white", "brown", "orange"].freeze
   validates :birth_date, :color, :name, :sex, :description, presence: true
   validates :sex, length: { is: 1 },
@@ -20,6 +24,7 @@ class Cat < ActiveRecord::Base
   validates :color, inclusion: { in: COLORS }
 
   def age
-    ((Date.today - birth_date).to_i / 365.0).round(1)
+    time_ago_in_words(birth_date)
+    # ((Date.today - birth_date).to_i / 365.0).round(1)
   end
 end
