@@ -23,6 +23,8 @@ class Cat < ActiveRecord::Base
             inclusion: { in: %w(M F), message: "Your cat needs a sex!" }
   validates :color, inclusion: { in: COLORS }
 
+  has_many :cat_rental_requests, dependent: :destroy
+
   def age
     time_ago_in_words(birth_date)
     # ((Date.today - birth_date).to_i / 365.0).round(1)

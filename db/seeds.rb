@@ -14,3 +14,9 @@ Cat.create(birth_date: "2015/02/24", color: "white", name: "Joyce", sex: "F", de
 Cat.create(birth_date: "2010/01/15", color: "white", name: "Sam", sex: "M", description: "He's a cat")
 Cat.create(birth_date: "2014/12/01", color: "white", name: "Lebron", sex: "M", description: "He's a cat")
 Cat.create(birth_date: "2012/08/24", color: "white", name: "Kobe", sex: "M", description: "He's a cat")
+
+CatRentalRequest.destroy_all
+CatRentalRequest.create(cat_id: 6, start_date: "2016/09/24", end_date: "2016/10/02", status: "APPROVED")
+CatRentalRequest.create(cat_id: 6, start_date: "2016/09/22", end_date: "2016/09/28", status: "PENDING")
+CatRentalRequest.create(cat_id: 6, start_date: "2015/09/24", end_date: "2015/10/02", status: "DENIED")
+CatRentalRequest.create(cat_id: 6, start_date: "2016/08/24", end_date: "2016/08/02", status: "APPROVED")

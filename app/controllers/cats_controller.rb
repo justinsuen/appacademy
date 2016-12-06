@@ -30,7 +30,12 @@ class CatsController < ApplicationController
 
   def edit
     @cat = Cat.find_by(id: params[:id])
-    render :edit
+
+    if @cat
+      render :edit
+    else
+      redirect_to cats_url
+    end
   end
 
   def update
