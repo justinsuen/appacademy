@@ -13,5 +13,5 @@ ActiveRecord::Base.transaction do
   user_3 = User.create(username: "lebronjames")
 
   Contact.destroy_all
-  contact_1 = Contact.create(name: "Luke Walton", email: "luke@walton.com", user_id: 7)
+  contact_1 = Contact.create(name: "Luke Walton", email: "luke@walton.com", user_id: 1)
 end
