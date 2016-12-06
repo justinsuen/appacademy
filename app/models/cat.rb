@@ -13,7 +13,7 @@
 #
 
 class Cat < ActiveRecord::Base
-  COLORS = ["black", "white"].freeze
+  COLORS = ["black", "white", "brown", "orange"].freeze
   validates :birth_date, :color, :name, :sex, :description, presence: true
   validates :sex, length: { is: 1 },
             inclusion: { in: %w(M F), message: "Your cat needs a sex!" }

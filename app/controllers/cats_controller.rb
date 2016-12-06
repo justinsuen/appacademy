@@ -5,7 +5,7 @@ class CatsController < ApplicationController
   end
 
   def show
-    @cat = Cat.find_by_id(cat_params[:id])
+    @cat = Cat.find_by(id: cat_params[:id])
 
     if @cat
       render :show
@@ -14,8 +14,27 @@ class CatsController < ApplicationController
     end
   end
 
+  def new
+    @cat = Cat.new
+    render :new
+  end
+
+  def create
+    @cat = Cat.new(cat_params)
+    if @cat.save
+      redirect_to cat_url(@cat)
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @cat = Cat.find_by(id: cat_params[:id])
+    render :edit
+  end
+
   private
   def cat_params
-    params.permit(:id, :name)
+    params.permit(:id, :name, :color, :sex, :description, :birth_date)
   end
 end

@@ -3,3 +3,5 @@
 <% @cats.each do |cat| %>
   <li><%= link_to cat.name, cat_url(cat) %></li>
 <% end %>
+
+<h3><%= link_to 'Add a cat', new_cat_url %></h3>
