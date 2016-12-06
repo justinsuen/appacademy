@@ -10,17 +10,10 @@ class UsersController < ApplicationController
       render json: @user
     else
       render(
-        json: @user.errors.full_messages, status: :unprocessable_entity
+        json: @user.errors.full_messages,
+        status: :unprocessable_entity
       )
     end
-  end
-
-  def new
-    render text: "I'm in the new action!"
-  end
-
-  def edit
-    render text: "I'm in the edit action!"
   end
 
   def show
@@ -36,11 +29,15 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_id(params[:id])
 
-    if @user
-      @user.update(user_params)
+    if !@user
+      render text: "No user with ID #{params[:id]}"
+    elsif @user.update(user_params)
       render json: @user
     else
-      render text: "No user with ID #{params[:id]}"
+      render(
+        json: @user.errors.full_messages,
+        status: :unprocessable_entity
+      )
     end
   end
 
@@ -57,6 +54,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params[:user].permit(:name, :email)
+    params[:user].permit(:username)
   end
 end
