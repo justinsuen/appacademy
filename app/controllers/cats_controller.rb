@@ -5,7 +5,7 @@ class CatsController < ApplicationController
   end
 
   def show
-    @cat = Cat.find_by(id: cat_params[:id])
+    @cat = Cat.find_by(id: params[:id])
 
     if @cat
       render :show
@@ -35,6 +35,6 @@ class CatsController < ApplicationController
 
   private
   def cat_params
-    params.permit(:id, :name, :color, :sex, :description, :birth_date)
+    params.require(:cat).permit(:name, :color, :sex, :description, :birth_date)
   end
 end
