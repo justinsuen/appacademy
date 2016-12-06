@@ -25,5 +25,22 @@
   </tr>
 </table>
 
+<table>
+  <tr>
+    <td>Start Date</td>
+    <td>End Date</td>
+    <td>Status</td>
+  </tr>
+  <% CatRentalRequest.all.order(:start_date).each do |request| %>
+    <% if request.cat_id == @cat.id %>
+      <tr>
+        <td><%= request.start_date %></td>
+        <td><%= request.end_date %></td>
+        <td><%= request.status %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
 <h3><%= link_to 'Make new request', new_cat_rental_request_url %></h3>
 <h3><%= link_to 'Return to index', cats_url %></h3>
