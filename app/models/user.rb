@@ -1,4 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  user_name       :string           not null
+#  password_digest :string           not null
+#  session_token   :string
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class User < ActiveRecord::Base
+  include BCrypt
+
   validates :user_name, :password_digest, :session_token, presence: true
   validates :user_name, :session_token, uniqueness: true
   after_initialize :ensure_session_token
@@ -17,6 +31,7 @@ class User < ActiveRecord::Base
   def reset_session_token!
     self.session_token = generate_token
     self.save
+    self.session_token
   end
 
   def generate_token
@@ -25,7 +40,7 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     pass_check = BCrypt::Password.create(password)
-    pass_check == self.password_digest
+    pass_check == BCrypt::Password.new(password_digest)
   end
 
   private

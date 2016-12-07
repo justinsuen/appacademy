@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: cats
+#
+#  id          :integer          not null, primary key
+#  birth_date  :date             not null
+#  color       :string           not null
+#  name        :string           not null
+#  sex         :string(1)        not null
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 require 'action_view'
 
 class Cat < ActiveRecord::Base
