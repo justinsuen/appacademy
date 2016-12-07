@@ -27,6 +27,8 @@ class CatRentalRequest < ActiveRecord::Base
   end
 
   def overlapping_requests?(other_req)
+    return false if self == other_req
+
     (self.start_date - other_req.end_date) * (other_req.start_date - self.end_date) >= 0
   end
 
@@ -38,4 +40,23 @@ class CatRentalRequest < ActiveRecord::Base
       end
     end
   end
+
+  def approve!
+    CatRentalRequest.transaction do
+      update_requests
+      self.status = "APPROVED"
+      self.save!
+    end
+  end
+
+  def deny!
+    self.status = "DENIED"
+    self.save!
+  end
+
+  def update_requests
+    CatRentalRequest.all.each do |request|
+      request.deny! if overlapping_requests?(request)
+    end
+  end  
 end
