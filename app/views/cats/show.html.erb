@@ -37,6 +37,10 @@
         <td><%= request.start_date %></td>
         <td><%= request.end_date %></td>
         <td><%= request.status %></td>
+        <% if request.status == 'PENDING' %>
+        <td><%= button_to 'Approve', approve_cat_rental_request_url(request.id), method: :approve %></td>
+        <td><%= button_to 'Deny', deny_cat_rental_request_url(request.id), method: :deny %></td>
+        <% end %>
       </tr>
     <% end %>
   <% end %>
