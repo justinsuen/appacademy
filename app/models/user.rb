@@ -39,8 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def is_password?(password)
-    pass_check = BCrypt::Password.create(password)
-    pass_check == BCrypt::Password.new(password_digest)
+    BCrypt::Password.new(password_digest) == password
   end
 
   private
