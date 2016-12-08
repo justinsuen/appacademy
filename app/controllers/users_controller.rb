@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :already_signed_in, only: [:new, :create]
+
   def new
     @user = User.new
 
@@ -10,9 +12,10 @@ class UsersController < ApplicationController
                      password: params[:user][:password])
 
     if @user.save
-      redirect_to user_url(@user)
+      login_user!(@user)
+      redirect_to cats_url
     else
-      flash[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
@@ -22,4 +25,5 @@ class UsersController < ApplicationController
 
     render :show
   end
+
 end

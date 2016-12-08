@@ -12,9 +12,12 @@
 
 class User < ActiveRecord::Base
   include BCrypt
+  attr_reader :password
 
   validates :user_name, :password_digest, :session_token, presence: true
   validates :user_name, :session_token, uniqueness: true
+  validates :password, length: { minimum: 6 }
+
   after_initialize :ensure_session_token
 
   def self.find_by_credentials(user_name, password)
@@ -24,6 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
     self.save
   end
