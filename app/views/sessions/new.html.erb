@@ -3,6 +3,7 @@
 <%= flash.now[:errors] if flash.now %>
 
 <form action="<%= session_url %>" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   <label for="user_name">Username:</label>
   <input type="text" name="user[user_name]">
 
