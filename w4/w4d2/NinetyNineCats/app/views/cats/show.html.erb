@@ -1,0 +1,50 @@
+<h1><%= @cat.name %></h1>
+
+<h3><%= link_to 'Edit cat', edit_cat_url %></h3>
+
+<table>
+  <tr>
+    <td>Attribute</td>
+    <td>Value</td>
+  </tr>
+  <tr>
+    <td>Age</td>
+    <td><%= @cat.age %></td>
+  </tr>
+  <tr>
+    <td>Birthdate</td>
+    <td><%= @cat.birth_date %></td>
+  </tr>
+  <tr>
+    <td>Color</td>
+    <td><%= @cat.color %></td>
+  </tr>
+  <tr>
+    <td>Sex</td>
+    <td><%= @cat.sex %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>Start Date</td>
+    <td>End Date</td>
+    <td>Status</td>
+  </tr>
+  <% CatRentalRequest.all.order(:start_date).each do |request| %>
+    <% if request.cat_id == @cat.id %>
+      <tr>
+        <td><%= request.start_date %></td>
+        <td><%= request.end_date %></td>
+        <td><%= request.status %></td>
+        <% if request.status == 'PENDING' %>
+        <td><%= button_to 'Approve', approve_cat_rental_request_url(request.id), method: :approve %></td>
+        <td><%= button_to 'Deny', deny_cat_rental_request_url(request.id), method: :deny %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<h3><%= link_to 'Make new request', new_cat_rental_request_url %></h3>
+<h3><%= link_to 'Return to index', cats_url %></h3>

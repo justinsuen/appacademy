@@ -1,0 +1,34 @@
+<% if action == :edit %>
+  <% action_url = cat_rental_request_url(cat_rental_request) %>
+<% else %>
+  <% action_url = cat_rental_requests_url %>
+<% end %>
+
+<form action="<%= action_url %>" method="post">
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <label for="cat_id">Name of cat</label>
+  <select name="cat_rental_request[cat_id]" id="cat_id">
+    <% Cat.all.each do |cat| %>
+      <option value="<%= cat.id %>"><%= cat.name %></option>
+    <% end %>
+  </select>
+
+  <br>
+
+  <label for="start_date">Start date</label>
+  <input id="start_date" type="date" name="cat_rental_request[start_date]"
+    value="<%= cat_rental_request.start_date %>">
+
+  <br>
+
+  <label for="end_date">End date</label>
+  <input id="end_date" type="date" name="cat_rental_request[end_date]"
+    value="<%= cat_rental_request.end_date %>">
+
+  <br>
+
+  <input type="submit" value="<%= action == :edit ? "Update request" : "Submit request" %>">
+</form>
