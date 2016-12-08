@@ -10,7 +10,7 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = Band.new(params[:band][:name])
+    @band = Band.new(name: params[:band][:name])
 
     if @band.save
       redirect_to bands_url

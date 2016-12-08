@@ -1,3 +1,9 @@
 <h1>Bands</h1>
 
-<%= @bands.each { |band| band.name } %>
+<ul>
+  <% @bands.as_json.each do |band| %>
+    <li><%= band["name"] %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Add new band", new_band_url, action: "new" %>
