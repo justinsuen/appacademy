@@ -9,15 +9,11 @@ class UsersController < ApplicationController
                      password: params[:user][:password])
 
     if @user.save
-      redirect_to users_url(@user)
+      login_user!(@user)
+      redirect_to user_url(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
-  end
-
-  def show
-    @user = User.find(id: params[:id])
-    render :show
   end
 end
