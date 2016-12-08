@@ -17,8 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    current_user.reset_session_token! if current_user
-    session[:session_token] = nil
-    redirect_to users_url
+    logout_user! if logged_in?
+    redirect_to new_session_url
   end
 end

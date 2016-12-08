@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<% if logged_in? %>
+  <%= button_to "Logout", session_url, method: :delete %>
+<% else %>
+  <%= link_to "Log in", new_session_url, action: "create" %>
+  <%= link_to "Sign up", new_user_url, action: "new" %>
+<% end %>
+
 <%= yield %>
 
 </body>
