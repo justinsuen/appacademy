@@ -7,9 +7,7 @@ class AlbumsController < ApplicationController
 
   def create
     @band = Band.find_by(id: params[:album][:band_id])
-    @album = Album.new(band_id: @band.id,
-                       name: params[:album][:name],
-                       album_type: params[:album][:album_type])
+    @album = Album.new(album_params)
 
     if @album.save
       redirect_to album_url(@album)
@@ -21,11 +19,13 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find_by(id: params[:id])
+    @band = Band.find_by(id: @album.band_id)
     render :edit
   end
 
   def update
     @album = Album.find_by(id: params[:id])
+    @band = Band.find_by(id: @album.band_id)
 
     if @album.update_attributes(album_params)
       redirect_to album_url(@album)

@@ -12,5 +12,29 @@
 
   <br>
 
+  <label for="band_id">Band: </label>
+  <select name="album[band_id]">
+    <% Band.all.each do |band| %>
+      <option value="<%= band.id %>"
+              <%= band == @band ? "selected" : "" %>>
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+
+  <br>
+
+  <label for="album_type">Album type: </label>
+  live<input type="radio"
+             name="album[album_type]"
+             value="live"
+             <%= @album.album_type == "live" ? "checked" : "" %>>
+  studio<input type="radio"
+             name="album[album_type]"
+             value="studio"
+             <%= @album.album_type == "studio" ? "checked" : "" %>>
+
+  <br>
+
   <input type="submit" value="Submit">
 </form>

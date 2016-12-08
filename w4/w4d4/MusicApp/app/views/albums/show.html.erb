@@ -1,7 +1,8 @@
 <h1><%= @album[:name] %></h1>
 
 <% @album.tracks.each do |track| %>
-  <%= track[:name] %>
+  <%= link_to track[:name], track_url(track), action: "show" %>
+  <br>
 <% end %>
 
 <br>
