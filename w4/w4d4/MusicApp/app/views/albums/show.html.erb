@@ -4,7 +4,17 @@
   <%= track[:name] %>
 <% end %>
 
+<br>
+
+<%= link_to "Edit album", edit_album_url(@album), action: "edit"%>
+
+<br>
+
 <%= link_to "Add track", new_album_track_url(@album), action: "new"%>
+
+<br>
+
+<%= button_to "Delete album", album_url(@album), method: :delete %>
 
 <br>
 
