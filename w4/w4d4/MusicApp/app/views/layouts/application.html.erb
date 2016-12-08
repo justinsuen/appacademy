@@ -9,6 +9,7 @@
 <body>
 
 <% if logged_in? %>
+  <%= current_user.as_json["email"] %>
   <%= button_to "Logout", session_url, method: :delete %>
 <% else %>
   <%= link_to "Log in", new_session_url, action: "create" %>

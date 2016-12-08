@@ -1,8 +1,8 @@
 <h1>Bands</h1>
 
 <ul>
-  <% @bands.as_json.each do |band| %>
-    <li><%= band["name"] %></li>
+  <% @bands.each do |band| %>
+    <li><%= link_to band["name"], band_url(band), action: "show" %></li>
   <% end %>
 </ul>
 

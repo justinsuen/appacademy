@@ -47,6 +47,11 @@ class BandsController < ApplicationController
     end
   end
 
+  def show
+    @band = Band.find_by(id: params[:id])
+    render :show
+  end
+
   private
 
   def band_params
