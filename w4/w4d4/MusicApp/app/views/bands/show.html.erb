@@ -1,5 +1,7 @@
 <h1><%= @band[:name] %></h1>
 
+<%= flash.now[:errors] %>
+
 <% @band.albums.each do |album| %>
   <%= link_to album[:name], album_url(album), action: "show" %>
   <br>
@@ -7,7 +9,15 @@
 
 <br>
 
+<%= link_to "Edit band", edit_band_url(@band), action: "edit"%>
+
+<br>
+
 <%= link_to "Add album", new_band_album_url(@band), action: "new"%>
+
+<br>
+
+<%= button_to "Delete band", band_url(@band), method: :delete %>
 
 <br>
 
