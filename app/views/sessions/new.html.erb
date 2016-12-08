@@ -1,5 +1,7 @@
 <h1>Login</h1>
 
+<%= flash.now[:errors] if flash.now %>
+
 <form action="<%= session_url %>" method="post">
   <label for="user_name">Username:</label>
   <input type="text" name="user[user_name]">

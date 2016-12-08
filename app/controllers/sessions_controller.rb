@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :already_signed_in, only: [:new]
+  before_action :already_signed_in, only: [:new, :create]
 
   def new
     render :new
@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:user_name],
                                      params[:user][:password])
 
-    debugger
     if @user
       login_user!(@user)
       redirect_to cats_url
