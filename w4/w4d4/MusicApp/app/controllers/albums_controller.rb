@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+  before_action :require_user!
+
   def new
     @album = Album.new
     @band = Band.find_by(id: params[:band_id])
