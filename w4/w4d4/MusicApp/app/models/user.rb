@@ -11,6 +11,7 @@
 #  note_id          :integer
 #  activation       :boolean          default("false")
 #  activation_token :string
+#  admin            :boolean          default("false")
 #
 
 class User < ActiveRecord::Base
@@ -20,6 +21,8 @@ class User < ActiveRecord::Base
   validates :activation_token, :email, :password_digest, :session_token, presence: true
   validates :activation_token, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
+
+  validates :admin, default: false
 
   has_many :notes
 
@@ -44,6 +47,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(password_digest) == password
   end
 
+  def make_admin!
+    self.update_attributes(admin: true)
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
@@ -64,4 +71,5 @@ class User < ActiveRecord::Base
   def set_activation_token
     self.activation_token = User.generate_token
   end
+
 end

@@ -9,8 +9,10 @@
 
 <h2>Links</h2>
 <ul>
-  <li><%= link_to "Edit album", edit_album_url(@album), action: "edit"%></li>
-  <li><%= link_to "Add track", new_album_track_url(@album), action: "new"%></li>
-  <li><%= link_to "Delete album", album_url(@album), method: :delete %></li>
+  <% if current_user.admin %>
+    <li><%= link_to "Edit album", edit_album_url(@album), action: "edit"%></li>
+    <li><%= link_to "Add track", new_album_track_url(@album), action: "new"%></li>
+    <li><%= link_to "Delete album", album_url(@album), method: :delete %></li>
+  <% end %>
   <li><%= link_to "Back to band", band_url(@band), action: "" %></li>
 </ul>

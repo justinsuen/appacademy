@@ -11,7 +11,9 @@
 
 <h2>Links</h2>
 <ul>
-  <li><%= link_to "Edit track", edit_track_url(@track), action: "edit"%></li>
-  <li><%= link_to "Delete track", track_url(@track), method: :delete %></li>
+  <% if current_user.admin %>
+    <li><%= link_to "Edit track", edit_track_url(@track), action: "edit"%></li>
+    <li><%= link_to "Delete track", track_url(@track), method: :delete %></li>
+  <% end %>
   <li><%= link_to "Back to album", album_url(@album), action: "" %></li>
 </ul>
