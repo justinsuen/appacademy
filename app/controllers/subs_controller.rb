@@ -15,7 +15,7 @@ class SubsController < ApplicationController
     @sub = Sub.new(sub_params)
 
     if @sub.save
-      flash.now[:notice] = "Successfully created a sub!"
+      flash[:notice] = "Successfully created a sub!"
       redirect_to root_url
     else
       flash.now[:errors] = @sub.errors.full_messages
