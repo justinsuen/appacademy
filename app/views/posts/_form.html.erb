@@ -1,0 +1,22 @@
+<% action = (sub_post.persisted? ? sub_post_url(sub_post.sub_id, sub_post.id) : sub_posts_url) %>
+<% method = (sub_post.persisted? ? :patch : :post) %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+
+  <label for="title">Title:</label>
+  <input type="text" name="post[title]" value="<%= sub_post.title %>">
+  <br>
+
+  <label for="url">URL:</label>
+  <input type="text" name="post[url]" value="<%= sub_post.url %>">
+  <br>
+
+  <label for="content">Content:</label>
+  <textarea name="post[content]" rows="8" cols="80"><%= sub_post.content %>
+  </textarea>
+  <br>
+
+  <input type="submit" name="" value="Submit">
+</form>

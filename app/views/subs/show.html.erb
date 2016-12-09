@@ -1,10 +1,21 @@
 <h1><%= @sub.title %></h1>
 
-<h3>Moderator: <%= User.find_by(id: @sub.moderator_id).username %></h3>
+<h3>Moderator: <%= @sub.moderator.username %></h3>
 
 <p><%= @sub.description %></p>
+
+<% if current_user %>
+  <%= link_to "Add Post", new_sub_post_url(@sub.id), method: :get %>
+<% end %>
 
 <% if current_user.id == @sub.moderator_id %>
   <%= link_to "Edit", edit_sub_url, method: :get %>
   <%= link_to "Delete", sub_url(@sub), method: :delete %>
 <% end %>
+
+<h2>Posts</h2>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><%= link_to post.title, sub_post_url(post.sub_id, post.id) %></li>
+  <% end %>
+</ul>

@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many :subs
+  has_many :posts
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

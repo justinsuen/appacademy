@@ -15,4 +15,6 @@ class Sub < ActiveRecord::Base
   validates :title, uniqueness: true
 
   has_many :posts, dependent: :destroy
+  belongs_to :moderator,
+    class_name: :User
 end

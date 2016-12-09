@@ -4,17 +4,19 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @sub_id = params[:sub_id]
     render :new
   end
 
   def create
     @post = Post.new(post_params)
-
+    @post.sub_id = params[:sub_id]
+    @post.author_id = current_user.id
     if @post.save
       flash[:notice] = "Successfully created a post!"
       redirect_to sub_url(@post.sub_id)
     else
-      flash.now[:errors] = @sub.errors.full_messages
+      flash.now[:errors] = @post.errors.full_messages
       render :new
     end
   end
@@ -38,7 +40,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
 
     if @post.update_attributes(post_params)
-      redirect_to post_url(@post)
+      redirect_to sub_post_url(@post.sub_id, @post.id)
     else
       flash.now[:errors] = @post.errors.full_messages
       render :edit
@@ -53,6 +55,8 @@ class PostsController < ApplicationController
     else
       flash[:notice] = "Post does not exist"
     end
+
+    redirect_to sub_url(@post.sub_id)
   end
 
   private
@@ -75,6 +79,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def post_parrams
+  def post_params
     params.require(:post).permit(:title, :url, :content, :sub_id, :author_id)
+  end
 end
