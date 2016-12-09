@@ -1,0 +1,6 @@
+<li>
+<% if note.user_id == current_user.id %>
+  <%= link_to "Delete note", note_url(note), method: :delete %>
+<% end %>
+<%= note.user.email + " @ " + note.created_at.strftime("%Y/%m/%d %R") + " - " + note.content %>
+</li>

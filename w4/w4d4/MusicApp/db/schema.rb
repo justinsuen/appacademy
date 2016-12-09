@@ -37,15 +37,15 @@ ActiveRecord::Schema.define(version: 20161209000948) do
   add_index "bands", ["name"], name: "index_bands_on_name", unique: true, using: :btree
 
   create_table "notes", force: :cascade do |t|
-    t.string   "note"
+    t.string   "content"
     t.integer  "track_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "notes", ["track_id"], name: "index_notes_on_track_id", unique: true, using: :btree
-  add_index "notes", ["user_id"], name: "index_notes_on_user_id", unique: true, using: :btree
+  add_index "notes", ["track_id"], name: "index_notes_on_track_id", using: :btree
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "tracks", force: :cascade do |t|
     t.integer  "album_id",   null: false

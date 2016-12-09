@@ -3,6 +3,13 @@
 <h2>Lyrics</h2>
 <p><%= @track.lyrics %></p>
 
+<%= render "notes/form", track: @track %>
+
+<h2>Saved notes</h2>
+<% @track.notes.each do |note| %>
+  <%= render "notes/note", note: note %>
+<% end %>
+
 <h2>Links</h2>
 <ul>
   <li><%= link_to "Edit track", edit_track_url(@track), action: "edit"%></li>
