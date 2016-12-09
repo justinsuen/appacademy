@@ -1,15 +1,11 @@
 <h1><%= @track[:name] %></h1>
 
-<p>Lyrics: <%= @track.lyrics %></p>
+<h2>Lyrics</h2>
+<p><%= @track.lyrics %></p>
 
-<br>
-
-<%= link_to "Edit track", edit_track_url(@track), action: "edit"%>
-
-<br>
-
-<%= button_to "Delete track", track_url(@track), method: :delete %>
-
-<br>
-
-<%= link_to "Back to album", album_url(@album), action: "" %>
+<h2>Links</h2>
+<ul>
+  <li><%= link_to "Edit track", edit_track_url(@track), action: "edit"%></li>
+  <li><%= link_to "Delete track", track_url(@track), method: :delete %></li>
+  <li><%= link_to "Back to album", album_url(@album), action: "" %></li>
+</ul>
