@@ -16,6 +16,14 @@
   <%= link_to "Sign up", new_user_url, action: "new" %>
 <% end %>
 
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:errors] %>
+  <p><%= flash[:errors].join(", ") %></p>
+<% end %>
+
 <%= yield %>
 
 </body>

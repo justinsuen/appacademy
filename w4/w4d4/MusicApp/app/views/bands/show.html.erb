@@ -1,7 +1,5 @@
 <h1><%= @band[:name] %></h1>
 
-<%= flash.now[:errors] %>
-
 <h2>Albums</h2>
 <ul>
   <% @band.albums.each do |album| %>

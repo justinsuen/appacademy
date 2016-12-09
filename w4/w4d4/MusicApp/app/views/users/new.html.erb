@@ -1,7 +1,5 @@
 <h1>Sign up</h1>
 
-<%= flash.now[:errors] if flash.now %>
-
 <form action="/users" method="post">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 

@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
   def logout_user!
     current_user.reset_session_token!
+    flash[:notice] = "You have logged out!"
     session[:session_token] = nil
   end
 
