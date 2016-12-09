@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208194856) do
+ActiveRecord::Schema.define(version: 20161209000948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20161208194856) do
 
   add_index "bands", ["name"], name: "index_bands_on_name", unique: true, using: :btree
 
+  create_table "notes", force: :cascade do |t|
+    t.string   "note"
+    t.integer  "track_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["track_id"], name: "index_notes_on_track_id", unique: true, using: :btree
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", unique: true, using: :btree
+
   create_table "tracks", force: :cascade do |t|
     t.integer  "album_id",   null: false
     t.string   "name",       null: false
@@ -43,6 +54,7 @@ ActiveRecord::Schema.define(version: 20161208194856) do
     t.string   "lyrics"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "note_id"
   end
 
   add_index "tracks", ["album_id"], name: "index_tracks_on_album_id", using: :btree
@@ -55,6 +67,7 @@ ActiveRecord::Schema.define(version: 20161208194856) do
     t.string   "session_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "note_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

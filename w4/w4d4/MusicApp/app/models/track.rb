@@ -9,11 +9,13 @@
 #  lyrics     :string
 #  created_at :datetime
 #  updated_at :datetime
+#  note_id    :integer
 #
 
 class Track < ActiveRecord::Base
   validates :name, presence: true
 
-  belongs_to :album
   has_one :band
+  belongs_to :album
+  has_many :notes
 end
