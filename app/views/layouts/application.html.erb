@@ -20,6 +20,9 @@
 <% end %>
 </ul>
 
+<%= flash.now[:notice] if flash %>
+<%= flash.now[:errors] if flash %>
+
 <%= yield %>
 
 </body>

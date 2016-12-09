@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
-      flash.now[:notice] = "Sign up successful!"
+      flash[:notice] = "Sign up successful!"
       redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages

@@ -14,5 +14,5 @@ class Sub < ActiveRecord::Base
   validates :title, :description, :moderator_id, presence: true
   validates :title, uniqueness: true
 
-  # has_many :posts
+  has_many :posts
 end

@@ -1,4 +1,5 @@
 class SubsController < ApplicationController
+  before_action :require_moderator, only: [:edit, :update, :destroy]
 
   def index
     @subs = Sub.all
@@ -49,10 +50,28 @@ class SubsController < ApplicationController
   end
 
   def destroy
+    @sub = Sub.find_by(id: params[:id])
 
+    if @sub
+      flash[:notice] = "Sub deleted"
+      @sub.destroy
+    else
+      flash[:notice] = "Sub does not exist"
+    end
+
+    redirect_to root_url
   end
 
   private
+
+  def require_moderator
+    @sub = Sub.find_by(id: params[:id])
+    unless current_user.id == @sub.moderator_id
+      flash.now[:errors] = "You must be the moderator"
+      render :show
+    end
+  end
+
 
   def sub_params
     params.require(:sub).permit(:title, :description, :moderator_id)
