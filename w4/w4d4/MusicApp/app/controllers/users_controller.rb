@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
 
     if current_user.admin && @user
-      @user.admin ? flash[:notice] = "You can't kill an admin!" : @user.destroy
+      @user.admin ? flash[:errors] = "You can't kill an admin!" : @user.destroy
       redirect_to users_url
     else
       redirect_to root_url
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:user_id])
 
     if @user.admin
-      flash[:notice] = "#{@user.email} is already an admin!"
+      flash[:errors] = "#{@user.email} is already an admin!"
     else
       @user.make_admin!
       flash[:notice] = "We made #{@user.email} an admin!"
