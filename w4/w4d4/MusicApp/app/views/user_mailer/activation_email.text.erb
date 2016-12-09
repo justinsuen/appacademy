@@ -1,0 +1,9 @@
+Welcome to my Music App!
+============================================
+You have successfully signed up to this app,
+your login email is: <%= @user.email %>.
+
+To login to the site, just follow this
+link: <%= activation_users_url(activation: @user.activation_token) %>
+
+Thanks for joining and have a great day!

@@ -2,26 +2,29 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string
-#  created_at      :datetime
-#  updated_at      :datetime
-#  note_id         :integer
+#  id               :integer          not null, primary key
+#  email            :string           not null
+#  password_digest  :string           not null
+#  session_token    :string
+#  created_at       :datetime
+#  updated_at       :datetime
+#  note_id          :integer
+#  activation       :boolean          default("false")
+#  activation_token :string
 #
 
 class User < ActiveRecord::Base
   include BCrypt
   attr_reader :password
 
-  validates :email, :password_digest, :session_token, presence: true
-  validates :email, :session_token, uniqueness: true
+  validates :activation_token, :email, :password_digest, :session_token, presence: true
+  validates :activation_token, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :notes
 
   after_initialize :ensure_session_token
+  after_initialize :set_activation_token
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -29,8 +32,12 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def self.generate_session_token
+  def self.generate_token
     SecureRandom.urlsafe_base64(128)
+  end
+
+  def activate!
+    self.update_attributes(activation: true)
   end
 
   def is_password?(password)
@@ -43,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.session_token = User.generate_session_token
+    self.session_token = User.generate_token
     self.save!
     self.session_token
   end
@@ -51,6 +58,10 @@ class User < ActiveRecord::Base
   private
 
   def ensure_session_token
-    self.session_token ||= User.generate_session_token
+    self.session_token ||= User.generate_token
+  end
+
+  def set_activation_token
+    self.activation_token = User.generate_token
   end
 end
