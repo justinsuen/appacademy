@@ -1,7 +1,6 @@
 <h1><%= @track[:name] %></h1>
 
-<h2>Lyrics</h2>
-<p><%= @track.lyrics %></p>
+<%= ugly_lyrics(@track.lyrics) %>
 
 <%= render "notes/form", track: @track %>
 
