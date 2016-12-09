@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditClone</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if current_user %>
+  <%= link_to "Logout", session_url, method: :delete %>
+<% else %>
+  <%= link_to "Sign in", new_session_url, method: :get %>
+  <%= link_to "Sign up", new_user_url, method: :get %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
