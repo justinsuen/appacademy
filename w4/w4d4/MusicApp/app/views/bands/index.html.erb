@@ -9,4 +9,7 @@
 <h2>Links</h2>
 <ul>
   <li><%= link_to "Add new band", new_band_url, action: "new" %></li>
+  <% if current_user.admin %>
+    <li><%= link_to "All users", users_url %></li>
+  <% end %>
 </ul>

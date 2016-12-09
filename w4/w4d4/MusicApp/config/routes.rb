@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root to: redirect("/bands")
 
-  resources :users, only: [:new, :create, :show] do
+  resources :users do
     get :activation, on: :collection
+    patch '/make_admin' => 'users#make_admin', as: :make_admin
   end
   resource :session, only: [:new, :create, :destroy]
 
