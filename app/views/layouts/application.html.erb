@@ -8,12 +8,17 @@
 </head>
 <body>
 
+<ul>
 <% if current_user %>
-  <%= link_to "Logout", session_url, method: :delete %>
+  <li><%= current_user.username %></li>
+  <li><%= link_to "Create a sub", new_sub_url, method: :get %></li>
+  <li><%= link_to "All subs", root_url, method: :get %></li>
+  <li><%= link_to "Logout", session_url, method: :delete %></li>
 <% else %>
-  <%= link_to "Sign in", new_session_url, method: :get %>
-  <%= link_to "Sign up", new_user_url, method: :get %>
+  <li><%= link_to "Sign in", new_session_url, method: :get %></li>
+  <li><%= link_to "Sign up", new_user_url, method: :get %></li>
 <% end %>
+</ul>
 
 <%= yield %>
 

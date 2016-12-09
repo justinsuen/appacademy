@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: user_params[:username],
-                     password: user_params[:password])
+    @user = User.new(user_params)
+    
     if @user.save
       flash.now[:notice] = "Sign up successful!"
       redirect_to root_url
