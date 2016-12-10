@@ -9,8 +9,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Successfully signed up!"
-      render :new
-      # redirect_to root_url
+      redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -26,8 +25,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(user_params)
       flash[:notice] = "Successfully updated user!"
-      render :edit
-      # redirect_to root_url
+      redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :edit
