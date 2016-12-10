@@ -10,6 +10,9 @@
 
 <%= render '/layouts/links' %>
 
+<%= flash[:errors] if flash[:errors] %>
+<%= flash[:notice] if flash[:notice] %>
+
 <%= yield %>
 
 </body>

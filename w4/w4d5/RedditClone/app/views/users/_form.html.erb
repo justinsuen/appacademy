@@ -1,5 +1,5 @@
-<% action_url = @user.persisted? ? user_url(@user) : users_url %>
-<% method = @user.persisted? ? "PATCH" : "POST" %>
+<% action_url = current_user.persisted? ? user_url(current_user) : users_url %>
+<% method = current_user.persisted? ? "PATCH" : "POST" %>
 
 <form action="<%= action_url %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
@@ -8,7 +8,7 @@
   <label for="username">Username:</label>
   <input type="text"
          name="user[username]"
-         value="<%= @user.persisted? ? @user.username : "" %>">
+         value="<%= method == "PATCH" ? current_user.username : "" %>">
 
   <br>
 
