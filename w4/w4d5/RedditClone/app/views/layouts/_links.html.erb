@@ -1,0 +1,10 @@
+<ul>
+  <% if logged_in? %>
+    <li><%= link_to current_user.username, user_url(current_user), method: :get %></li>
+    <li><%= link_to "Edit User", edit_user_url(current_user), method: :patch %></li>
+    <li><%= link_to "Log out", session_url, method: :delete %></li>
+  <% else %>
+    <li><%= link_to "Log in", new_session_url, method: :get %></li>
+    <li><%= link_to "Sign up", new_user_url, method: :get %></li>
+  <% end %>
+</ul>
