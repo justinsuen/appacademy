@@ -27,6 +27,19 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'user find by credentials' do
+    it 'finds correct user' do
+      User.create!(username: 'kobe_bryant', password: 'black_mamba')
+      user = User.find_by_credentials('kobe_bryant', 'black_mamba')
+      expect(user.username).to eq('kobe_bryant')
+    end
+
+    it 'does not find user that does not exist' do
+      user = User.find_by_credentials('lebron_james', 'the_king')
+      expect(user).to be(nil)
+    end
+  end
+
   describe 'validations' do
     it { should validate_presence_of(:username) }
     it { should validate_uniqueness_of(:username) }
