@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       render :show
     else
       flash[:errors] = "User does not exist"
-      render :index
+      index
     end
   end
 
