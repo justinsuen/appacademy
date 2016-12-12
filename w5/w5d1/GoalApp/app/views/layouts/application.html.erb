@@ -13,8 +13,8 @@
 <% if logged_in? %>
   <%= link_to "Log out", session_url, method: :delete %>
 <% else %>
-  <%= link_to "Log in", new_session_url, method: :new %>
-  <%= link_to "Sign up", new_user_url, method: :new %>
+  <%= link_to "Log in", new_session_url, method: :get %>
+  <%= link_to "Sign up", new_user_url, method: :get %>
 <% end %>
 </body>
 </html>
