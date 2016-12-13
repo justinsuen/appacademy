@@ -7,10 +7,12 @@
 #  tweet_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 
 class Reply < ActiveRecord::Base
-  validates :body, :tweet, presence: true
+  validates :body, :tweet, :user_id, presence: true
 
   belongs_to :tweet
+  belongs_to :user
 end

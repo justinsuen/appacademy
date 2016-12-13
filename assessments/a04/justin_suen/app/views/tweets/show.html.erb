@@ -8,13 +8,16 @@
 
 <ul>
   <% @tweet.replies.each do |reply| %>
-    <li><%= reply.body %></li>
+    <li>
+      <%= reply.body %>
+      <%= button_to "Remove Reply", reply_url(reply), method: :delete %>
+    </li>
   <% end %>
 </ul>
 
 <h1>New Reply</h1>
 
-<form action="<%= tweet_url(@tweet) %>" method="post">
+<form action="<%= replies_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <label for="body">Reply Body
