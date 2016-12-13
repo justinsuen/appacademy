@@ -1,0 +1,9 @@
+<h1>Links</h1>
+
+<%= link_to "New Link", new_link_url, method: :post %>
+
+<ul>
+  <% @links.each do |link| %>
+    <%= link_to link.title, link_url(link), method: :get %>
+  <% end %>
+</ul>
