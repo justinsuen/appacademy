@@ -1,0 +1,5 @@
+<h1><%= @goal.name %></h1>
+
+<p><%= @goal.details %></p>
+
+<%= link_to "Back to user", user_url(@goal.user_id), method: :get %>

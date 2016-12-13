@@ -2,9 +2,11 @@
 
 <ul>
   <% current_user.goals.each do |goal| %>
-    <li><%= goal.title %></li>
+    <li>
+      <%= link_to goal.name, goal_url(goal), method: :get%>
+      <%= link_to "Edit goal", edit_goal_url(goal), method: :get %>
+    </li>
   <% end %>
 </ul>
 
 <%= link_to "Add goal", new_goal_url, method: :get %>
-<%= link_to "Edit goal", edit_goal_url(current_user), method: :get %>

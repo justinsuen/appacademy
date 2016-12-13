@@ -1,0 +1,26 @@
+<h1>New goal</h1>
+
+<form action="<%= goal_url(@goal) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="name">Name: </label>
+  <input type="text" name="goals[name]" value="<%= @goal.name %>">
+  <br>
+
+  <label for="details">Details: </label>
+  <textarea name="goals[details]" rows="8" cols="80"><%= @goal.details %></textarea>
+  <br>
+
+  <label for="privacy">Private: </label>
+  <input type="checkbox" name="goals[privacy]" value="<%= true %>" <%= @goal.privacy ? "checked" : ""%>>
+  <br>
+
+  <label for="completed">Completed: </label>
+  <input type="checkbox" name="goals[completed]" value="<%= true %>" <%= @goal.completed ? "checked" : ""%>>
+  <br>
+
+  <input type="submit" value="Submit">
+</form>
+
+<%= link_to "Back to goal", goal_url(@goal), method: :get %>
