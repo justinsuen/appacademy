@@ -1,0 +1,26 @@
+<h1><%= @tweet.title %></h1>
+
+<h2><%= @tweet.user.username %></h2>
+
+<p><%= @tweet.body %></p>
+
+<%= link_to "Edit Tweet", edit_tweet_url(@tweet), method: :get %>
+
+<ul>
+  <% @tweet.replies.each do |reply| %>
+    <li><%= reply.body %></li>
+  <% end %>
+</ul>
+
+<h1>New Reply</h1>
+
+<form action="<%= tweet_url(@tweet) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="body">Reply Body
+  <input type="text" name="reply[body]" value="">
+  </label>
+  <br>
+
+  <input type="submit" name="submit" value="Add Reply">
+</form>

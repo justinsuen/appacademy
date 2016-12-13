@@ -1,0 +1,12 @@
+<h1>New Reply</h1>
+
+<form action="/replies" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="body">Body
+  <input type="text" name="reply[body]" value="">
+  </label>
+  <br>
+
+  <input type="submit" name="submit" value="Sign In">
+</form>
