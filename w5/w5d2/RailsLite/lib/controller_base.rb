@@ -21,9 +21,11 @@ class ControllerBase
   def redirect_to(url)
     raise "Double render error!" if already_built_response?
 
-    res.set_header("Location", url)
-    res.status = 302
+    @res.set_header("Location", url)
+    @res.status = 302
     @already_built_response = true
+
+    session.store_session(@res)
   end
 
   # Populate the response with content.
@@ -32,9 +34,11 @@ class ControllerBase
   def render_content(content, content_type)
     raise "Double render error!" if already_built_response?
 
-    res.write(content)
-    res.set_header("Content-Type", content_type)
+    @res.write(content)
+    @res.set_header("Content-Type", content_type)
     @already_built_response = true
+
+    session.store_session(@res)
   end
 
   # use ERB and binding to evaluate templates
@@ -51,6 +55,7 @@ class ControllerBase
 
   # method exposing a `Session` object
   def session
+    @session ||= Session.new(@req)
   end
 
   # use this with the router to call action_name (:index, :show, :create...)
