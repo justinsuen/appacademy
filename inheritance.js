@@ -17,9 +17,7 @@ MovingObject.prototype.move = function () {
 function Ship () {}
 Ship.inherits(MovingObject);
 
-function Asteroid () {
-  this.size = 300;
-}
+function Asteroid () {}
 Asteroid.inherits(MovingObject);
 
 Asteroid.prototype.break = function() {
@@ -29,5 +27,5 @@ Asteroid.prototype.break = function() {
 const mover = new MovingObject();
 const asty = new Asteroid();
 
-console.log(asty.size);
+console.log(Asteroid.prototype instanceof MovingObject);
 console.log(mover.size);
