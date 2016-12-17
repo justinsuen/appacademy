@@ -1,3 +1,5 @@
+const Util = require('./utils.js');
+
 function MovingObject (options) {
   this.pos = options.pos;
   this.vel = options.vel;
@@ -26,4 +28,4 @@ MovingObject.prototype.move = function () {
   this.pos[1] += this.vel[1];
 };
 
-// module.export = MovingObject;
+module.exports = MovingObject;
