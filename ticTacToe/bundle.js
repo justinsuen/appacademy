@@ -87,6 +87,11 @@
 	    if(this.game.isOver()) {
 	      let winner = this.game.currentPlayer;
 	      $(`.${winner}`).addClass('winner');
+	      $('li').not(".winner").addClass('loser');
+
+	      let $message = $(`<h3>You win, ${winner}!</h3>`);
+	      this.$el.append($message);
+	      this.$el.off('click');
 	    }
 	  }
 

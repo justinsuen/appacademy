@@ -1,9 +1,17 @@
+* {
+  font-family: Sans-serif;
+}
+
 body {
   text-align: center;
 }
 
-h1 {
-  font-family: Sans-serif;
+h1  {
+  font-size: 4em;
+}
+
+h3 {
+  font-size: 2em;
 }
 
 li {
@@ -13,6 +21,7 @@ li {
   position: relative;
   float: left;
   background-color: gray;
+  line-height: 180px;
 }
 
 li:hover {
@@ -28,12 +37,18 @@ li:hover {
 }
 
 .x, .o {
-  font-size: 15vw;
+  font-size: 18vw;
   background-color: white;
 }
 
-.winner {
+.winner, .winner:hover {
   background-color: green;
+  color: white;
+}
+
+.loser, .loser:hover {
+  background-color: white;
+  color: red;
 }
 
 ul {
