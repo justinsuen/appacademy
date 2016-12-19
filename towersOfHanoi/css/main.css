@@ -1,0 +1,23 @@
+* {
+  text-align: center;
+  font-family: Arial;
+}
+
+ul {
+  width: 200px;
+  height: 150px;
+  border-bottom: 10px solid gray;
+  display: inline-block;
+  margin: 10px;
+}
+
+ul:hover {
+  border-bottom: 10px solid blue;
+}
+
+li {
+  display: block;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+}
