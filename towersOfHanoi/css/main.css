@@ -5,10 +5,11 @@
 
 ul {
   width: 200px;
-  height: 150px;
+  height: 200px;
   border-bottom: 10px solid gray;
   display: inline-block;
-  margin: 10px;
+  margin-right: 10px;
+  padding: 0;
 }
 
 ul:hover {
@@ -16,8 +17,31 @@ ul:hover {
 }
 
 li {
-  display: block;
+  display: inline-flex;
   height: 50px;
   width: 200px;
-  line-height: 50px;
+  /*line-height: 50px;*/
+  margin: 10px;
+}
+
+.disc {
+  height: 45px;
+  background-color: gray;
+  border-radius: 30px;
+}
+
+.disc3 {
+  width: 180px;
+}
+
+.disc2 {
+  width: 140px;
+}
+
+.disc1 {
+  width: 100px;
+}
+
+.selected {
+  background-color: blue;
 }
