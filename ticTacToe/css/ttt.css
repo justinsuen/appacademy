@@ -1,0 +1,29 @@
+body {
+  text-align: center;
+}
+
+h1 {
+  font-family: Sans-serif;
+}
+
+li {
+  border: 1px solid black;
+  width: 33%;
+  height: 33%;
+  position: relative;
+  float: left;
+  background-color: gray;
+}
+
+li:hover {
+  background-color: yellow;
+}
+
+ul {
+  padding: 0;
+  margin: 0 auto;
+  width: 600px;
+  height: 600px;
+  list-style-type: none;
+  border: 5px solid black;
+}
