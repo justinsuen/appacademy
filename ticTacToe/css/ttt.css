@@ -7,9 +7,9 @@ h1 {
 }
 
 li {
-  border: 1px solid black;
-  width: 33%;
-  height: 33%;
+  border: 5px solid black;
+  width: 190px;
+  height: 190px;
   position: relative;
   float: left;
   background-color: gray;
@@ -19,6 +19,23 @@ li:hover {
   background-color: yellow;
 }
 
+.x:after {
+  content: "x";
+}
+
+.o:after {
+  content: "o";
+}
+
+.x, .o {
+  font-size: 15vw;
+  background-color: white;
+}
+
+.winner {
+  background-color: green;
+}
+
 ul {
   padding: 0;
   margin: 0 auto;
@@ -26,4 +43,5 @@ ul {
   height: 600px;
   list-style-type: none;
   border: 5px solid black;
+  display: table;
 }
