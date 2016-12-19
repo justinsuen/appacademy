@@ -3,13 +3,21 @@
   font-family: Arial;
 }
 
+.hanoi {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 ul {
   width: 200px;
   height: 200px;
   border-bottom: 10px solid gray;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin-right: 10px;
   padding: 0;
+  align-items: center;
 }
 
 ul:hover {
@@ -17,11 +25,11 @@ ul:hover {
 }
 
 li {
-  display: inline-flex;
-  height: 50px;
+  display: block;
+  height: 60px;
   width: 200px;
-  /*line-height: 50px;*/
-  margin: 10px;
+  margin: auto;
+
 }
 
 .disc {
@@ -35,17 +43,21 @@ li {
 }
 
 .disc2 {
-  width: 140px;
+  width: 130px;
 }
 
 .disc1 {
-  width: 100px;
-}
-
-.selected {
-  background-color: blue;
+  width: 80px;
 }
 
 .winner {
   background-color: green;
+}
+
+.selected {
+  border-bottom: 10px solid red;
+}
+
+.selected > li.disc {
+  background-color: red;
 }

@@ -38,7 +38,7 @@ class View {
     if (this.game.isWon()) {
       this.$el.off('click');
       let $message = $(`<h2>You win!!</h2>`);
-      this.$el.append($message);
+      $message.insertAfter(this.$el);
       $('.disc').addClass('winner');
     }
   }
