@@ -9,7 +9,7 @@ class Game {
 
       if (startTower.length === 0) {
         return false;
-      } else if (endTower.length == 0) {
+      } else if (endTower.length === 0) {
         return true;
       } else {
         const topStartDisc = startTower[startTower.length - 1];
@@ -20,7 +20,7 @@ class Game {
 
   isWon() {
       // move all the discs to the last or second tower
-      return (this.towers[2].length == 3) || (this.towers[1].length == 3);
+      return (this.towers[2].length === 3) || (this.towers[1].length === 3);
   }
 
   move(startTowerIdx, endTowerIdx) {
@@ -42,7 +42,7 @@ class Game {
         const startTowerIdx = parseInt(start);
         reader.question("Enter an ending tower: ", end => {
           const endTowerIdx = parseInt(end);
-          callback(startTowerIdx, endTowerIdx)
+          callback(startTowerIdx, endTowerIdx);
         });
       });
   }

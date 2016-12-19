@@ -69,7 +69,7 @@
 
 	      if (startTower.length === 0) {
 	        return false;
-	      } else if (endTower.length == 0) {
+	      } else if (endTower.length === 0) {
 	        return true;
 	      } else {
 	        const topStartDisc = startTower[startTower.length - 1];
@@ -80,7 +80,7 @@
 
 	  isWon() {
 	      // move all the discs to the last or second tower
-	      return (this.towers[2].length == 3) || (this.towers[1].length == 3);
+	      return (this.towers[2].length === 3) || (this.towers[1].length === 3);
 	  }
 
 	  move(startTowerIdx, endTowerIdx) {
@@ -102,7 +102,7 @@
 	        const startTowerIdx = parseInt(start);
 	        reader.question("Enter an ending tower: ", end => {
 	          const endTowerIdx = parseInt(end);
-	          callback(startTowerIdx, endTowerIdx)
+	          callback(startTowerIdx, endTowerIdx);
 	        });
 	      });
 	  }
@@ -153,19 +153,27 @@
 	  }
 
 	  makeMove($startTower, $endTower) {
-	    let res = this.game.move($startTower.data('pos'), $endTower.data('pos'));
+	    if (!this.game.isWon()) {
+	      let res = this.game.move($startTower.data('pos'), $endTower.data('pos'));
+	      if (res === true) {
+	        let disc = $('.selected .disc')[0];
+	        let $disc = $(disc);
+	        let classes = $disc.attr("class");
 
-	    if (res === true) {
-	      let disc = $('.selected .disc')[0];
-	      let $disc = $(disc);
-	      let classes = $disc.attr("class");
+	        $endTower.children().not('.disc').last().addClass(classes);
+	        $startTower.removeClass('selected');
+	        $disc.removeClass(classes);
+	      } else {
+	        $('.selected').removeClass('selected');
+	        console.log('Invalid move');
+	      }
+	    }
 
-	      $endTower.children().not('.disc').last().addClass(classes);
-	      $startTower.removeClass('selected');
-	      $disc.removeClass(classes);
-	    } else {
-	      $('.selected').removeClass('selected');
-	      console.log('Invalid move');
+	    if (this.game.isWon()) {
+	      this.$el.off('click');
+	      let $message = $(`<h2>You win!!</h2>`);
+	      this.$el.append($message);
+	      $('.disc').addClass('winner');
 	    }
 	  }
 

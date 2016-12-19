@@ -45,3 +45,7 @@ li {
 .selected {
   background-color: blue;
 }
+
+.winner {
+  background-color: green;
+}

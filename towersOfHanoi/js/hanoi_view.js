@@ -19,19 +19,27 @@ class View {
   }
 
   makeMove($startTower, $endTower) {
-    let res = this.game.move($startTower.data('pos'), $endTower.data('pos'));
+    if (!this.game.isWon()) {
+      let res = this.game.move($startTower.data('pos'), $endTower.data('pos'));
+      if (res === true) {
+        let disc = $('.selected .disc')[0];
+        let $disc = $(disc);
+        let classes = $disc.attr("class");
 
-    if (res === true) {
-      let disc = $('.selected .disc')[0];
-      let $disc = $(disc);
-      let classes = $disc.attr("class");
+        $endTower.children().not('.disc').last().addClass(classes);
+        $startTower.removeClass('selected');
+        $disc.removeClass(classes);
+      } else {
+        $('.selected').removeClass('selected');
+        console.log('Invalid move');
+      }
+    }
 
-      $endTower.children().not('.disc').last().addClass(classes);
-      $startTower.removeClass('selected');
-      $disc.removeClass(classes);
-    } else {
-      $('.selected').removeClass('selected');
-      console.log('Invalid move');
+    if (this.game.isWon()) {
+      this.$el.off('click');
+      let $message = $(`<h2>You win!!</h2>`);
+      this.$el.append($message);
+      $('.disc').addClass('winner');
     }
   }
 
