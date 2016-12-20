@@ -8,6 +8,7 @@
 
 .language-nav {
 	position: absolute;
+	margin-top: 10px;
 	top: -15px;
 	left: calc(50% - (177.78px/2));
 	background: white;
@@ -23,6 +24,10 @@
 	font-family: $sans-serif;
 	font-size: 10px;
 	color: $dark-gray;
+}
+
+.language-nav li:first-of-type {
+	font-weight: bold;
 }
 
 .language-nav ul {
@@ -44,15 +49,17 @@
 
 .masthead-links li {
 	margin-left: 10px;
-	border-right: 1px solid $light-gray;
+	list-style: none;
 }
 
-.masthead-links button {
+.masthead-links a {
 	background: none;
 	padding: 0px;
 	color: #000;
 	font-weight: normal;
 	border: none;
+	text-transform: capitalize;
+	text-decoration: underline;
 }
 
 .masthead-links button:hover {
@@ -60,7 +67,7 @@
 }
 
 .masthead-links a,
-.masthead-links button, 
+.masthead-links button,
 .masthead-links time {
 	margin-right: 10px;
 }

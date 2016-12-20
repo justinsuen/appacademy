@@ -1,0 +1,26 @@
+section {
+  display: flex;
+  justify-content: space-around;
+}
+
+section ul {
+  display: flex;
+}
+
+section ul li {
+  margin: 10px;
+  font-family: $sans-serif;
+}
+
+section ul li:hover {
+  background-color: $light-gray;
+}
+
+section ul li:last-child:hover {
+  text-decoration: underline;
+  background-color: inherit;
+}
+
+section ul li:last-child {
+  text-transform: uppercase;
+}
