@@ -1,0 +1,63 @@
+* {
+  text-align: center;
+  font-family: Arial;
+}
+
+.hanoi {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+ul {
+  width: 200px;
+  height: 200px;
+  border-bottom: 10px solid gray;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  padding: 0;
+  align-items: center;
+}
+
+ul:hover {
+  border-bottom: 10px solid blue;
+}
+
+li {
+  display: block;
+  height: 60px;
+  width: 200px;
+  margin: auto;
+
+}
+
+.disc {
+  height: 45px;
+  background-color: gray;
+  border-radius: 30px;
+}
+
+.disc3 {
+  width: 180px;
+}
+
+.disc2 {
+  width: 130px;
+}
+
+.disc1 {
+  width: 80px;
+}
+
+.winner {
+  background-color: green;
+}
+
+.selected {
+  border-bottom: 10px solid red;
+}
+
+.selected > li.disc {
+  background-color: red;
+}

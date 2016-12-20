@@ -1,0 +1,62 @@
+* {
+  font-family: Sans-serif;
+}
+
+body {
+  text-align: center;
+}
+
+h1  {
+  font-size: 4em;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+li {
+  border: 5px solid black;
+  width: 190px;
+  height: 190px;
+  position: relative;
+  float: left;
+  background-color: gray;
+  line-height: 180px;
+}
+
+li:hover {
+  background-color: yellow;
+}
+
+.x:after {
+  content: "x";
+}
+
+.o:after {
+  content: "o";
+}
+
+.x, .o {
+  font-size: 18vw;
+  background-color: white;
+}
+
+.winner, .winner:hover {
+  background-color: green;
+  color: white;
+}
+
+.loser, .loser:hover {
+  background-color: white;
+  color: red;
+}
+
+ul {
+  padding: 0;
+  margin: 0 auto;
+  width: 600px;
+  height: 600px;
+  list-style-type: none;
+  border: 5px solid black;
+  display: table;
+}
