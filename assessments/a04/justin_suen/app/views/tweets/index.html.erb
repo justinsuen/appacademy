@@ -1,7 +1,0 @@
-<h1>Tweets</h1>
-
-<ul>
-  <% current_user.tweets.each do |tweet| %>
-    <li><%= link_to tweet.title, tweet_url(tweet) %></li>
-  <% end %>
-</ul>
