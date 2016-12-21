@@ -66,15 +66,25 @@
 	    this.userId = this.el.data("user-id");
 	    this.followState = this.el.data("initial-follow-state");
 	
-	    this.el.text(this.render());
+	    this.render();
 	    this.handleClick();
 	  }
 	
 	  render() {
 	    if (this.followState === "unfollowed") {
-	      return "Follow!";
-	    } else {
-	      return "Unfollow!";
+	      this.el.text("Follow!");
+	      this.el.prop("disabled", false);
+	    } else if (this.followState === "followed") {
+	      this.el.text("Unfollow!");
+	      this.el.prop("disabled", false);
+	    } else if (this.followState === "unfollowing") {
+	      this.el.text("Unfollowing...");
+	      this.followState = "unfollowed";
+	      this.el.prop("disabled", true);
+	    } else if (this.followState === "following"){
+	      this.el.text("Following...");
+	      this.followState = "followed";
+	      this.el.prop("disabled", true);
 	    }
 	  }
 	
@@ -83,23 +93,15 @@
 	      event.preventDefault();
 	
 	      if (this.followState === "unfollowed"){
-	        APIUtil.followUser(this.userId)
-	               .then(this.switchFollowState.bind(this));
+	        this.followState = "following";
+	        this.render();
+	        APIUtil.followUser(this.userId).then(this.render.bind(this));
 	      } else {
-	        APIUtil.unfollowUser(this.userId)
-	               .then(this.switchFollowState.bind(this));
+	        this.followState = "unfollowing";
+	        this.render();
+	        APIUtil.unfollowUser(this.userId).then(this.render.bind(this));
 	      }
 	    });
-	  }
-	
-	  switchFollowState() {
-	    if (this.followState === "unfollowed") {
-	      this.followState = "followed";
-	    } else {
-	      this.followState = "unfollowed";
-	    }
-	
-	    this.el.text(this.render());
 	  }
 	}
 	
