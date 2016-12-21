@@ -91,10 +91,15 @@ h1 {
   font-family: $sans-serif;
   color: $dark-gray;
   padding: 5px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   border-radius: 5px 0 0 5px;
 }
 
 .sign-up + button {
+  margin-top: 10px;
+  margin-bottom: 5px;
   border-radius: 0 5px 5px 0;
 }
 
