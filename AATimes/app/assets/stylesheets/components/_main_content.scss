@@ -78,3 +78,34 @@ h1 {
   height: 100px;
   object-fit: cover;
 }
+
+.title-no-line {
+  font-weight: bold;
+  font-size: 125%;
+}
+
+.sign-up {
+  display: flex;
+  flex: 1;
+  border: 1px solid $dark-gray;
+  font-family: $sans-serif;
+  color: $dark-gray;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+}
+
+.sign-up + button {
+  border-radius: 0 5px 5px 0;
+}
+
+.foots {
+  text-align: center;
+  font-family: $sans-serif;
+  font-size: 80%;
+  color: $dark-gray;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+}
