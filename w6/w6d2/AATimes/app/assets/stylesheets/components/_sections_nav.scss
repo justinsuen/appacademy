@@ -1,0 +1,26 @@
+.section-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.section-nav ul {
+  display: flex;
+}
+
+.section-nav ul li {
+  margin: 10px;
+  font-family: $sans-serif;
+}
+
+.section-nav ul li:hover {
+  background-color: $light-gray;
+}
+
+.section-nav ul li:last-child:hover {
+  text-decoration: underline;
+  background-color: inherit;
+}
+
+.section-nav ul li:last-child {
+  text-transform: uppercase;
+}
