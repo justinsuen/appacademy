@@ -5,6 +5,7 @@ with a class attribute containing 'col-' */
   box-sizing: border-box;
   padding-right: 20px;
   display: block;
+  margin-bottom: 15px;
 }
 
 [class*='col-']:last-of-type {

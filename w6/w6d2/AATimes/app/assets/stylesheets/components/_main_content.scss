@@ -18,6 +18,10 @@ h1 {
 
 .op-ed {
   text-align: center;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 150%;
+  font-weight: bold;
 }
 
 .subject {
@@ -87,18 +91,16 @@ h1 {
 .sign-up {
   display: flex;
   flex: 1;
-  border: 1px solid $dark-gray;
+  border: 1px solid $light-gray;
   font-family: $sans-serif;
   color: $dark-gray;
   padding: 5px;
   padding-left: 10px;
-  margin-top: 10px;
   margin-bottom: 5px;
   border-radius: 5px 0 0 5px;
 }
 
 .sign-up + button {
-  margin-top: 10px;
   margin-bottom: 5px;
   border-radius: 0 5px 5px 0;
 }

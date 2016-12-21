@@ -31,6 +31,11 @@ button:hover {
 	border-color: $darkest-blue;
 }
 
+p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 /*
 	Header Rules
 */
@@ -47,13 +52,13 @@ hr {
 }
 
 .hr-top {
-	height: 1px;
-	margin-bottom: 15px;
+	height: 3px;
+	margin-bottom: 3px;
 }
 
 .hr-bottom {
-	height: 3px;
-	margin-top: 50px;
+	height: 1px;
+	margin-bottom: 15px;
 }
 
 .hidden {
