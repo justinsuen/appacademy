@@ -1,6 +1,6 @@
 .main-nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 15px;
 }
 
@@ -36,6 +36,7 @@
 
 .left-nav span {
   margin-left: 5px;
+  font-weight: bold;
 }
 
 

@@ -4,11 +4,11 @@
 	align-items: center;
 	border-bottom: 2px solid black;
 	position: relative;
+	border-top: 1px solid $light-gray;
 }
 
 .language-nav {
 	position: absolute;
-	margin-top: 10px;
 	top: -15px;
 	left: calc(50% - (177.78px/2));
 	background: white;
@@ -50,6 +50,11 @@
 .masthead-links li {
 	margin-left: 10px;
 	list-style: none;
+	border-right: 1px solid $light-gray;
+}
+
+.masthead-links li:last-child {
+	border-right: none;
 }
 
 .masthead-links a {
@@ -70,6 +75,19 @@
 .masthead-links button,
 .masthead-links time {
 	margin-right: 10px;
+}
+
+.masthead-links button {
+	background-color: inherit;
+	border-color: inherit;
+	color: inherit;
+	font-weight: inherit;
+	padding: inherit;
+	border-radius: none;
+	font-family: inherit;
+	text-transform: inherit;
+	font-size: inherit;
+	text-align: inherit;
 }
 
 .masthead-links i {

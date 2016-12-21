@@ -10,6 +10,7 @@ body {
 	margin: 0 auto;
 	font-family: $serif;
 	font-size: 12px;
+	z-index: 9;
 }
 
 button {
@@ -49,4 +50,8 @@ hr {
 .hr-top {
 	height: 2px;
 	margin-bottom: 1px;
+}
+
+.hidden {
+	display: none;
 }

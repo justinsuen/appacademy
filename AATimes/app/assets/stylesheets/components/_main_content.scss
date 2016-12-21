@@ -1,0 +1,77 @@
+
+iframe {
+  width: 100%;
+  height: 315px;
+}
+
+[class*=".col-"] h3 {
+  font-size: 150%;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 250%;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.op-ed {
+  text-align: center;
+}
+
+.subject {
+  text-transform: uppercase;
+}
+
+.title {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 125%;
+}
+
+.title-no-line {
+  font-weight: bold;
+  font-size: 125%;
+}
+
+.col-1-2 ul li {
+  font-weight: bold;
+  list-style: initial;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.body-text ul{
+  list-style: initial;
+  margin-left: 15px;
+}
+
+.body-text ul li {
+  margin-bottom: 10px;
+}
+
+[class*='col-'] a {
+  color: $light-blue;
+  text-decoration: underline;
+  font-family: $sans-serif;
+}
+
+.author {
+  text-transform: uppercase;
+  color: $dark-gray;
+  font-size: 110%;
+}
+
+[class*='col-'] > div, [class*='col-'] > ul, [class*='col-'] > li {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.floor {
+  width: 100%;
+  height: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
