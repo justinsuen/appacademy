@@ -41,3 +41,4 @@ This repository contains the files I worked on for the App Academy Nov 2016 Coho
 
 ### Week 6 (JS and JQuery)
 * [w6d1](w6/w6d1) - jQuery Tic-Tac-Toe, and Towers of Hanoi
+* [w6d2](w6/w6d2) - AATimes (NYTimes clone)
