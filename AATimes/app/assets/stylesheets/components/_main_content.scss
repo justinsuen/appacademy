@@ -24,15 +24,26 @@ h1 {
   text-transform: uppercase;
 }
 
+[class*='col-'] .comments-link {
+  color: $light-blue;
+  text-decoration: underline;
+  font-family: $sans-serif;
+}
+
 .title {
   font-weight: bold;
+}
+
+.title:hover {
   text-decoration: underline;
+}
+
+.small {
   font-size: 125%;
 }
 
-.title-no-line {
-  font-weight: bold;
-  font-size: 125%;
+.big {
+  font-size: 250%;
 }
 
 .col-1-2 ul li {
@@ -51,12 +62,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-[class*='col-'] a {
-  color: $light-blue;
-  text-decoration: underline;
-  font-family: $sans-serif;
-}
-
 .author {
   text-transform: uppercase;
   color: $dark-gray;
@@ -71,7 +76,5 @@ h1 {
 .floor {
   width: 100%;
   height: 100px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
+  object-fit: cover;
 }
