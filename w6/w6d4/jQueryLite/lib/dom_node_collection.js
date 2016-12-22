@@ -3,7 +3,7 @@ class DOMNodeCollection {
     this.nodes = nodes;
   }
 
-  nodesEachDo (cb) {
+  each (cb) {
     for (let i = 0; i < this.nodes.length; i++) {
       cb(this.nodes[i]);
     }
@@ -11,7 +11,7 @@ class DOMNodeCollection {
 
   html(html) {
     if (typeof html === 'string') {
-      this.nodesEachDo(node => { node.innerHTML = html; });
+      this.each(node => { node.innerHTML = html; });
     } else {
       if (this.nodes.length > 0) {
         return this.nodes[0].innerHTML;
@@ -34,14 +34,46 @@ class DOMNodeCollection {
     }
 
     if (typeof content === 'string') {
-      this.nodesEachDo(node => { node.innerHTML += content; });
+      this.each(node => { node.innerHTML += content; });
     } else if (content instanceof DOMNodeCollection) {
-      this.nodesEachDo(node => {
-        content.nodesEachDo(childNode => {
+      this.each(node => {
+        content.each(childNode => {
           node.appendChild(childNode.cloneNode(true));
         });
       });
     }
+  }
+
+  attr(key, val) {
+    if (typeof val === 'string' || typeof val === 'number') {
+      this.each(node => node.setAttribute(key, val));
+    } else {
+      return this.nodes[0].getAttribute(key);
+    }
+  }
+
+  addClass(className) {
+    this.each(node => node.classList.append(className));
+  }
+
+  removeClass(className) {
+    this.each(node => node.classList.remove(className));
+  }
+
+  children(selector) {
+
+  }
+
+  parent(selector) {
+
+  }
+
+  find(selector) {
+
+  }
+
+  remove() {
+    
   }
 }
 
