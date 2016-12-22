@@ -45,12 +45,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	const FollowToggle = __webpack_require__(1);
+	const UsersSearch = __webpack_require__(3);
 	
 	$(document).ready(function (){
 	  const $buttons = $("button");
 	  for (let i = 0; i < $buttons.length; i++) {
 	    const followToggle = new FollowToggle($buttons[i]);
 	  }
+	
+	  const $usersSearch = $(".users-search")[0];
+	  const userSearchForm = new UsersSearch($usersSearch);
 	});
 
 
@@ -61,10 +65,10 @@
 	const APIUtil = __webpack_require__(2);
 	
 	class FollowToggle {
-	  constructor(el) {
+	  constructor(el, options) {
 	    this.el = $(el);
-	    this.userId = this.el.data("user-id");
-	    this.followState = this.el.data("initial-follow-state");
+	    this.userId = this.el.data("user-id") || options.userId;
+	    this.followState = this.el.data("initial-follow-state") || options.followState;
 	
 	    this.render();
 	    this.handleClick();
@@ -127,10 +131,62 @@
 	      url: `/users/${id}/follow`,
 	      dataType: "json"
 	    });
+	  },
+	
+	  searchUsers: (query) => {
+	    return $.ajax({
+	      method: "GET",
+	      url: "/users/search",
+	      data: { query },
+	      dataType: "json",
+	    });
 	  }
 	};
 	
 	module.exports = APIUtil;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	const APIUtil = __webpack_require__(2);
+	const FollowToggle = __webpack_require__(1);
+	
+	class UsersSearch {
+	  constructor(el) {
+	    this.$el = $(el);
+	    this.$ul = this.$el.find("ul.users");
+	    this.$input = this.$el.find("input");
+	    this.$input.on("input", () => this.handleInput());
+	  }
+	
+	  handleInput() {
+	    APIUtil.searchUsers(this.$input.val())
+	      .then(users => {
+	        this.renderUsers(users);
+	      });
+	  }
+	
+	  renderUsers(users) {
+	    // debugger;
+	    this.$ul.empty();
+	    for (let i = 0; i < users.length; i++) {
+	      let button = '<button class="follow-toggle" type="button"></button>';
+	      let $li = $(`<li>${users[i].username} ${button}</li>`);
+	      this.$ul.append($li);
+	    }
+	
+	    const $buttons = $(".follow-toggle");
+	    for (let j = 0; j < $buttons.length; j++) {
+	      let $button = $buttons[j];
+	      let followState = users[j].followed ? "followed" : "unfollowed";
+	      const followToggle = new FollowToggle($button, {userId: users[j].id, followState: followState});
+	    }
+	  }
+	}
+	
+	module.exports = UsersSearch;
 
 
 /***/ }
