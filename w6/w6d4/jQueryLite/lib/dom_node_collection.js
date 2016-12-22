@@ -3,24 +3,8 @@ class DOMNodeCollection {
     this.nodes = nodes;
   }
 
-  each (cb) {
-    for (let i = 0; i < this.nodes.length; i++) {
-      cb(this.nodes[i]);
-    }
-  }
-
-  html(html) {
-    if (typeof html === 'string') {
-      this.each(node => { node.innerHTML = html; });
-    } else {
-      if (this.nodes.length > 0) {
-        return this.nodes[0].innerHTML;
-      }
-    }
-  }
-
-  empty() {
-    this.html('');
+  addClass(className) {
+    this.each(node => node.classList.append(className));
   }
 
   append(content) {
@@ -29,12 +13,14 @@ class DOMNodeCollection {
     }
 
     if ((typeof content === 'object') &&
-      !(content instanceof DOMNodeCollection)) {
+    !(content instanceof DOMNodeCollection)) {
       content = $(content);
     }
 
     if (typeof content === 'string') {
-      this.each(node => { node.innerHTML += content; });
+      this.each(node => {
+        node.innerHTML += content;
+      });
     } else if (content instanceof DOMNodeCollection) {
       this.each(node => {
         content.each(childNode => {
@@ -52,14 +38,6 @@ class DOMNodeCollection {
     }
   }
 
-  addClass(className) {
-    this.each(node => node.classList.append(className));
-  }
-
-  removeClass(className) {
-    this.each(node => node.classList.remove(className));
-  }
-
   children() {
     let childNodes = [];
     this.each(node => {
@@ -68,10 +46,14 @@ class DOMNodeCollection {
     return new DOMNodeCollection(childNodes);
   }
 
-  parent() {
-    let parentNodes = [];
-    this.each(node => parentNodes.push(node.parentNode));
-    return new DOMNodeCollection(parentNodes);
+  each(cb) {
+    for (let i = 0; i < this.nodes.length; i++) {
+      cb(this.nodes[i]);
+    }
+  }
+
+  empty() {
+    this.html('');
   }
 
   find(selector) {
@@ -83,8 +65,53 @@ class DOMNodeCollection {
     return new DOMNodeCollection(foundNodes);
   }
 
+  html(html) {
+    if (typeof html === 'string') {
+      this.each(node => {
+        node.innerHTML = html;
+      });
+    } else {
+      if (this.nodes.length > 0) {
+        return this.nodes[0].innerHTML;
+      }
+    }
+  }
+
+  off(event) {
+    const evKey = `jqliteEvent-${event}`;
+
+    this.each(node => {
+      if (node[evKey]) {
+        node[evKey].forEach(cb => node.removeEventListener(event, cb));
+      }
+      delete node[evKey];
+    });
+  }
+
+  on(event, cb) {
+    const evKey = `jqliteEvent-${event}`;
+
+    this.each(node => {
+      node.addEventListener(event, cb);
+      if (node[evKey] === undefined) {
+        node[evKey] = [];
+      }
+      node[evKey].push(cb);
+    });
+  }
+
+  parent() {
+    let parentNodes = [];
+    this.each(node => parentNodes.push(node.parentNode));
+    return new DOMNodeCollection(parentNodes);
+  }
+
   remove() {
     this.each(node => node.parentNode.removeChild(node));
+  }
+
+  removeClass(className) {
+    this.each(node => node.classList.remove(className));
   }
 }
 
