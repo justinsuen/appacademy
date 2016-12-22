@@ -127,20 +127,31 @@
 	    this.each(node => node.classList.remove(className));
 	  }
 
-	  children(selector) {
-
+	  children() {
+	    let childNodes = [];
+	    this.each(node => {
+	      childNodes = childNodes.concat(Array.from(node.childNodes));
+	    });
+	    return new DOMNodeCollection(childNodes);
 	  }
 
-	  parent(selector) {
-
+	  parent() {
+	    let parentNodes = [];
+	    this.each(node => parentNodes.push(node.parentNode));
+	    return new DOMNodeCollection(parentNodes);
 	  }
 
 	  find(selector) {
-
+	    let foundNodes = [];
+	    this.each(node => {
+	      let nodeList = node.querySelectorAll(selector);
+	      foundNodes = foundNodes.concat(Array.from(nodeList));
+	    });
+	    return new DOMNodeCollection(foundNodes);
 	  }
 
 	  remove() {
-	    
+	    this.each(node => node.parentNode.removeChild(node));
 	  }
 	}
 
