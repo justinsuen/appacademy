@@ -46,6 +46,7 @@
 
 	const FollowToggle = __webpack_require__(1);
 	const UsersSearch = __webpack_require__(3);
+	const TweetCompose = __webpack_require__(4);
 	
 	$(document).ready(function (){
 	  const $buttons = $("button");
@@ -55,6 +56,9 @@
 	
 	  const $usersSearch = $(".users-search")[0];
 	  const userSearchForm = new UsersSearch($usersSearch);
+	
+	  const $tweetCompose = $("form.tweet-compose");
+	  const tweetForm = new TweetCompose($tweetCompose);
 	});
 
 
@@ -138,6 +142,15 @@
 	      method: "GET",
 	      url: "/users/search",
 	      data: { query },
+	      dataType: "json"
+	    });
+	  },
+	
+	  createTweet: (data) => {
+	    return $.ajax({
+	      method: "POST",
+	      url: "/tweets",
+	      data,
 	      dataType: "json",
 	    });
 	  }
@@ -187,6 +200,35 @@
 	}
 	
 	module.exports = UsersSearch;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	const APIUtil = __webpack_require__(2);
+	
+	class TweetCompose {
+	  constructor(el) {
+	    this.$el = $(el);
+	    this.$el.on("submit", (event) => this.submit(event));
+	  }
+	
+	  submit(event) {
+	    event.preventDefault();
+	
+	    let $data = this.$el.serializeJSON();
+	    this.$el.find("input").prop("disabled", "true");
+	
+	    APIUtil.createTweet($data).then(this.handleSuccess);
+	  }
+	
+	  handleSuccess() {
+	
+	  }
+	}
+	
+	module.exports = TweetCompose;
 
 
 /***/ }
