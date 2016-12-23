@@ -1,5 +1,6 @@
 import React from 'react';
 import Tabs from './tabs';
+import Clock from './clock';
 
 const tab0 = {title: "Tab 0", content: "Stuff 0"};
 const tab1 = {title: "Tab 1", content: "Stuff 1"};
