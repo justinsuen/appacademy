@@ -8,13 +8,15 @@ class Tabs extends React.Component {
     this.tabs = this.props.tabs;
   }
 
-  setBaseTab(tab) {
-    this.setState({ baseTab: tab });
+  setBaseTab(tab, idx) {
+    this.setState({ index: idx, baseTab: tab });
   }
 
   setTabTitles(tabs) {
     return this.tabs.map((tab, idx) => (
-      <h1 key={idx} onClick={this.setBaseTab.bind(this, tab)}>
+      <h1 key={idx}
+        className={this.state.index === idx ? "bold" : ""}
+        onClick={this.setBaseTab.bind(this, tab, idx)}>
         {tab.title}
       </h1>
     ));
@@ -26,10 +28,11 @@ class Tabs extends React.Component {
     let content = baseTab.content;
 
     return (
-      <div>
-        <h2>Base Tab: {baseTab.title}</h2>
+      <div className="tabs">
         <ul>{tabTitles}</ul>
-        <p>{content}</p>
+        <div className="content">
+          {content}
+        </div>
       </div>
     );
   }
