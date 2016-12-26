@@ -43,3 +43,5 @@ This repository contains the files I worked on for the App Academy Nov 2016 Coho
 * [w6d1](w6/w6d1) - jQuery Tic-Tac-Toe, and Towers of Hanoi
 * [w6d2](w6/w6d2) - AATimes (NYTimes clone)
 * [w6d3](w6/w6d3) - AJAX Twitter clone
+* [w6d4](w6/w6d4) - jQuery Lite and Mail app
+* [w6d5](w6/w6d5) - React Widgets and Minesweeper
