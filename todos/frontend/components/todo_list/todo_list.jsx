@@ -17,6 +17,7 @@ class TodoList extends React.Component {
               key={idx}
               todo={todo}
               removeTodo={this.props.removeTodo}
+              receiveTodo={this.props.receiveTodo}
               />
           )}
         </ul>
