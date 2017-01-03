@@ -45,3 +45,7 @@ This repository contains the files I worked on for the App Academy Nov 2016 Coho
 * [w6d3](w6/w6d3) - AJAX Twitter clone
 * [w6d4](w6/w6d4) - jQuery Lite and Mail app
 * [w6d5](w6/w6d5) - React Widgets and Minesweeper
+
+### Week 7 (React and Redux)
+* [w7d1](w7/w7d1) - To-Do List frontend
+* [w7d2](w7/w7d2) - To-Do List full stack app
