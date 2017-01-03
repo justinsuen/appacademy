@@ -29,3 +29,7 @@ export const removeTodo = (todo) => {
 export const requestTodos = () => dispatch => {
   TodoAPIUtil.fetchTodos().then(todos => dispatch(receiveTodos(todos)));
 };
+
+export const createTodo = () => dispatch => {
+  TodoAPIUtil.createTodo().then(todos => dispatch(receiveTodos(todos)));
+};
