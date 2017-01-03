@@ -23,7 +23,7 @@ class TodoListItem extends React.Component {
   handleUpdate (e) {
     e.preventDefault();
     this.props.todo.done = (this.props.todo.done === true) ? false : true;
-    this.props.receiveTodo(this.props.todo);
+    this.props.updateTodo(this.props.todo);
   }
 
   render() {
@@ -31,7 +31,7 @@ class TodoListItem extends React.Component {
 
     let todoDV = <TodoDetailView
       todo={todo}
-      removeTodo={this.props.removeTodo}
+      destroyTodo={this.props.destroyTodo}
       />;
 
     return (

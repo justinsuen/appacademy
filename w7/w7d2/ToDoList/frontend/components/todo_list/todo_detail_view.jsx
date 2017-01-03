@@ -11,7 +11,7 @@ class TodoDetailView extends React.Component {
 
   handleDelete (e) {
     e.preventDefault();
-    this.props.removeTodo(this.props.todo);
+    this.props.destroyTodo(this.props.todo);
   }
 
   render() {
