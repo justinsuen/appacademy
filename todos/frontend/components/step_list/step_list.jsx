@@ -8,7 +8,6 @@ class StepList extends React.Component {
   }
 
   render() {
-    // debugger;
     return (
       <div>
         <ul>

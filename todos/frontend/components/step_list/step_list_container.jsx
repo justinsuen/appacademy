@@ -6,7 +6,6 @@ import { receiveStep, removeStep } from '../../actions/step_actions';
 window.stepsByTodoId = stepsByTodoId;
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger;
   return { steps: stepsByTodoId(state, ownProps.todoId) };
 };
 
