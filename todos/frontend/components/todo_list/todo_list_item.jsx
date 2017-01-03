@@ -1,15 +1,23 @@
 import React from 'react';
+import TodoDetailView from './todo_detail_view';
 
 class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      detail: false
+    };
+
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleTitleClick = this.handleTitleClick.bind(this);
   }
 
-  handleDelete (e) {
+  handleTitleClick (e) {
     e.preventDefault();
-    this.props.removeTodo(this.props.todo);
+    let detailShow = (this.state.detail) === true ? false : true;
+    this.setState({
+      detail: detailShow
+    });
   }
 
   handleUpdate (e) {
@@ -21,13 +29,20 @@ class TodoListItem extends React.Component {
   render() {
     let todo = this.props.todo;
 
+    let todoDV = <TodoDetailView
+      todo={todo}
+      removeTodo={this.props.todo}
+      />;
+
     return (
       <li>
-        { todo.title }
-        <button onClick={this.handleDelete}>Delete</button>
+        <div onClick={this.handleTitleClick}>
+          { todo.title }
+        </div>
         <button onClick={this.handleUpdate}>
           {todo.done === true ? "Undo" : "Done"}
         </button>
+        { this.state.detail ? todoDV : null }
       </li>
     );
   }
