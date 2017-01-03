@@ -7,6 +7,10 @@ class TodoList extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.requestTodos();
+  }
+
   render() {
     return (
       <div className="todo-container">
