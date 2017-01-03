@@ -1,4 +1,4 @@
-class Api::TodoController < ApplicationController
+class Api::TodosController < ApplicationController
   def index
     render json: Todo.all
   end
