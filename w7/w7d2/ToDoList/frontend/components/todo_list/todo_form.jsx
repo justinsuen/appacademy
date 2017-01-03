@@ -1,6 +1,7 @@
 import React from 'react';
-import { uniqueId } from '../../util/util.js';
 import merge from 'lodash/merge';
+import { uniqueId } from '../../util/util.js';
+import ErrorList from './error_list';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -35,8 +36,8 @@ class TodoForm extends React.Component {
 
   render() {
     return (
-      <form className="todo-form"
-        onSubmit={this.handleSubmit}>
+      <form className="todo-form" onSubmit={this.handleSubmit}>
+        <ErrorList errors={ this.props.errors } />
         <label>
           Title:
           <input

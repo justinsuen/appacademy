@@ -3,15 +3,20 @@ import TodoList from './todo_list';
 import { allTodos } from '../../reducers/selectors';
 import { receiveTodo, removeTodo, requestTodos, createTodo } from '../../actions/todo_actions';
 
-const mapStateToProps = state => ({
-  todos: allTodos(state)
-});
+const mapStateToProps = state => {
+  return {
+    todos: allTodos(state),
+    errors: state.errors
+  };
+};
 
-const mapDispatchToProps = dispatch => ({
-  removeTodo: (todo) => dispatch(removeTodo(todo)),
-  requestTodos: () => dispatch(requestTodos()),
-  createTodo: (todo) => dispatch(createTodo(todo))
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    removeTodo: (todo) => dispatch(removeTodo(todo)),
+    requestTodos: () => dispatch(requestTodos()),
+    createTodo: (todo) => dispatch(createTodo(todo))
+  };
+};
 
 
 const TodoListContainer = connect(

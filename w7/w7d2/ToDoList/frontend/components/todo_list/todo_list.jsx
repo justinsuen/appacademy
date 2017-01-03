@@ -22,13 +22,14 @@ class TodoList extends React.Component {
             <TodoListItem
               key={idx}
               todo={todo}
-              removeTodo={this.props.removeTodo}
-              receiveTodo={this.props.receiveTodo}
+              removeTodo={ this.props.removeTodo }
+              receiveTodo={ this.props.receiveTodo }
               />
           )}
         </ul>
         <TodoForm
-          createTodo={this.props.createTodo}
+          createTodo={ this.props.createTodo }
+          errors={ this.props.errors }
           />
       </div>
     );
