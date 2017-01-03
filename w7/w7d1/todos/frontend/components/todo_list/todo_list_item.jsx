@@ -35,7 +35,7 @@ class TodoListItem extends React.Component {
       />;
 
     return (
-      <li>
+      <li className="todo-item">
         <div onClick={this.handleTitleClick}>
           { todo.title }
         </div>

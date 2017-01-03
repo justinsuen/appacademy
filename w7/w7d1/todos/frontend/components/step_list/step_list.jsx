@@ -10,7 +10,7 @@ class StepList extends React.Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul className="step-list">
           { this.props.steps.map((step, idx) =>
             <StepListItem
               key={idx}
@@ -20,12 +20,10 @@ class StepList extends React.Component {
               />
           )}
         </ul>
-        <div>
-          <StepForm
-            receiveStep={this.props.receiveStep}
-            todoId={this.props.todoId}
-            />
-        </div>
+        <StepForm
+          receiveStep={this.props.receiveStep}
+          todoId={this.props.todoId}
+          />
       </div>
     );
   }

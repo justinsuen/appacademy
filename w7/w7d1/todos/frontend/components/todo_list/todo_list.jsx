@@ -9,9 +9,11 @@ class TodoList extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Todo List</h1>
-        <ul>
+      <div className="todo-container">
+        <div className="title-block">
+          <h1 className="title">To-do List</h1>
+        </div>
+        <ul className="todo-list">
           { this.props.todos.map((todo, idx) =>
             <TodoListItem
               key={idx}
@@ -21,11 +23,9 @@ class TodoList extends React.Component {
               />
           )}
         </ul>
-        <div>
-          <TodoForm
-            receiveTodo={this.props.receiveTodo}
-            />
-        </div>
+        <TodoForm
+          receiveTodo={this.props.receiveTodo}
+          />
       </div>
     );
   }

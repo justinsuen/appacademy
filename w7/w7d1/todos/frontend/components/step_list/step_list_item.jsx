@@ -23,7 +23,7 @@ class StepListItem extends React.Component {
     let step = this.props.step;
 
     return (
-      <li>
+      <li className="step-item">
         <div>
           { step.title }
         </div>
