@@ -1,0 +1,39 @@
+html,
+body,
+ul,
+p,
+h3,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  border: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #B2EBF2;
+}
+
+li {
+  list-style: none;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 40%;
+  min-width: 400px;
+  margin-bottom: 40px;
+}
+
+.todo-list, .todo-form, .step-form, .todo-form label, .step-form label, .step-list {
+  display: flex;
+  flex-direction: column;
+}
