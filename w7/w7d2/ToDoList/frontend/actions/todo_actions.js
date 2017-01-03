@@ -26,10 +26,14 @@ export const removeTodo = (todo) => {
 };
 
 // Async functions
-export const requestTodos = () => dispatch => {
-  TodoAPIUtil.fetchTodos().then(todos => dispatch(receiveTodos(todos)));
-};
+export const requestTodos = () => dispatch => (
+  TodoAPIUtil.fetchTodos().then(
+    todos => dispatch(receiveTodos(todos))
+  )
+);
 
-export const createTodo = () => dispatch => {
-  TodoAPIUtil.createTodo().then(todos => dispatch(receiveTodos(todos)));
-};
+export const createTodo = (todo) => dispatch => (
+  TodoAPIUtil.createTodo(todo).then(
+    todo => dispatch(receiveTodo(todo))
+  )
+);

@@ -25,11 +25,12 @@ class TodoForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let newTodo = merge({}, this.state);
-    newTodo.id = uniqueId();
+    let todo = merge({}, this.state);
+    todo.id = uniqueId();
 
-    this.props.receiveTodo(newTodo);
-    this.setState({ id: "", title: "", body: "", done: false });
+    this.props.createTodo({ todo }).then(
+      () => this.setState({ title: "", body: "" })
+    );
   }
 
   render() {
