@@ -1,14 +1,14 @@
-export const fetchSteps = todoId => (
+export const fetchSteps = todo_id => (
  $.ajax({
     method: 'GET',
-    url: `/api/todos/${todoId}/steps`
+    url: `/api/todos/${todo_id}/steps`
   })
 );
 
-export const createStep = (todoId, step) => (
+export const createStep = (todo_id, step) => (
   $.ajax({
     method: 'POST',
-    url: `/api/todos/${todoId}/steps`,
+    url: `/api/todos/${todo_id}/steps`,
     data: { step }
   })
 );

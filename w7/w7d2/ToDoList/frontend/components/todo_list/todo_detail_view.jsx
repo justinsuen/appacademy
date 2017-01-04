@@ -3,10 +3,6 @@ import StepList from '../step_list/step_list';
 import StepListContainer from '../step_list/step_list_container';
 
 class TodoDetailView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.requestSteps();
   }
@@ -17,7 +13,7 @@ class TodoDetailView extends React.Component {
     return (
       <div>
         <div>{todo.body}</div>
-        <StepListContainer todoId={todo.id}/>
+        <StepListContainer todo_id={todo.id}/>
         <button onClick={ this.props.destroyTodo }>
           Delete Todo
         </button>

@@ -4,10 +4,10 @@ import StepList from './step_list';
 import { stepsByTodoId } from '../../reducers/selectors';
 import { createStep } from '../../actions/step_actions';
 
-const mapStateToProps = (state, { todoId }) => {
+const mapStateToProps = (state, { todo_id }) => {
   return {
-    steps: stepsByTodoId(state, todoId),
-    todoId
+    steps: stepsByTodoId(state, todo_id),
+    todo_id
   };
 };
 

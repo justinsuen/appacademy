@@ -26,14 +26,14 @@ export const removeStep = (step) => {
 };
 
 // Async functions
-export const requestSteps = todoId => dispatch => {
-  return StepAPIUtil.fetchSteps(todoId).then(
+export const requestSteps = todo_id => dispatch => {
+  return StepAPIUtil.fetchSteps(todo_id).then(
     steps => dispatch(receiveSteps(steps))
   );
 };
 
-export const createStep = (todoId, step) => dispatch => {
-  return StepAPIUtil.createStep(todoId, step)
+export const createStep = (todo_id, step) => dispatch => {
+  return StepAPIUtil.createStep(todo_id, step)
     .then(step => dispatch(receiveStep(step))
   );
 };

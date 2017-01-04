@@ -12,8 +12,6 @@ const stepsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_STEP:
       return merge({}, state, { [action.step.id]: action.step });
-      // newState[action.step.id] = action.step;
-      // return newState;
     case REMOVE_STEP:
       delete newState[action.step.id];
       return newState;

@@ -2,7 +2,7 @@ import React from 'react';
 import StepForm from './step_form';
 import StepListItemContainer from './step_list_item_container';
 
-const StepList = ({ steps, todoId, createStep }) => {
+const StepList = ({ steps, todo_id, createStep }) => {
   return (
     <div>
       <ul className="step-list">
@@ -13,7 +13,7 @@ const StepList = ({ steps, todoId, createStep }) => {
             />))
         }
       </ul>
-      <StepForm createStep={createStep} todoId={todoId}/>
+      <StepForm createStep={createStep} todo_id={todo_id}/>
     </div>
   );
 };

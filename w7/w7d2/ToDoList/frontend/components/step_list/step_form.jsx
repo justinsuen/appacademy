@@ -6,7 +6,7 @@ class StepForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { id: "", title: "", done: false, todoId: this.props.todoId };
+    this.state = { id: "", title: "", done: false, todo_id: this.props.todo_id };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,7 +21,7 @@ class StepForm extends React.Component {
     let newStep = merge({}, this.state);
     newStep.id = uniqueId();
 
-    this.props.createStep(this.props.todoId, newStep);
+    this.props.createStep(this.props.todo_id, newStep);
     this.setState({ id: "", title: "", done: false });
   }
 
