@@ -11,12 +11,12 @@ class StepListItem extends React.Component {
   handleUpdate (e) {
     e.preventDefault();
     this.props.step.done = (this.props.step.done === true) ? false : true;
-    this.props.receiveStep(this.props.step);
+    this.props.updateStep(this.props.step);
   }
 
   handleDelete (e) {
     e.preventDefault();
-    this.props.removeStep(this.props.step);
+    this.props.destroyStep(this.props.step);
   }
 
   render() {

@@ -7,6 +7,7 @@ export const allTodos = (state) => {
 };
 
 export const stepsByTodoId = (state, todoId) => {
+  debugger;
   let stepsIds = Object.keys(state.steps);
   let stepsArray = [];
   stepsIds.forEach((id) => {
