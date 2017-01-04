@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe 'Guests Bonus' do
-  before { pending('Bonus') }
-  
   it 'index shows only guests between 40 and 50' do
     get '/api/guests'
     expect(json[0]['name']).to eq('John Smith')
