@@ -33,6 +33,12 @@ export const requestTodos = () => dispatch => {
   );
 };
 
+export const requestTodo = () => dispatch => {
+  return TodoAPIUtil.fetchTodo().then(
+    todo => dispatch(receiveTodo(todo))
+  );
+};
+
 export const createTodo = (todo) => dispatch => {
   return TodoAPIUtil.createTodo(todo)
     .then(todo => dispatch(receiveTodo(todo)),

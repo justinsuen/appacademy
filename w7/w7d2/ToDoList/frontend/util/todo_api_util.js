@@ -5,12 +5,12 @@ export const fetchTodos = () => {
   });
 };
 
-// export const fetchTodo = (id) => {
-//   return $.ajax({
-//     method: 'GET',
-//     url: `api/todos/${id}`
-//   });
-// };
+export const fetchTodo = (id) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/todos/${id}`
+  });
+};
 
 export const createTodo = todo => {
   return $.ajax({
