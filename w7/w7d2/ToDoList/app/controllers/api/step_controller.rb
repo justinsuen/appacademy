@@ -17,16 +17,17 @@ class Api::StepController < ApplicationController
   def update
     @step = Step.find(params[:id])
 
-    if @step.update_attributes(step_params)
+    if @step
+      @step.update_attributes(step_params)
       render json: @step
     else
-      render json: @step.errors.full_messages, status: 422
+      render json: { message: 'Step not found', status: 404 }
     end
   end
 
   def destroy
     @step = Step.find(params[:id]).destroy
-    render json: @user
+    render json: @step
   end
 
   private
