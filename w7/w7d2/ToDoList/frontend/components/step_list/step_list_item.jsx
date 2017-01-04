@@ -24,15 +24,19 @@ class StepListItem extends React.Component {
 
     return (
       <li className="step-item">
-        <div>
-          { step.title }
+        <div className="step-text">
+          <div>
+            { step.title }
+          </div>
+          <div>
+            <button onClick={this.handleUpdate} className={step.done === true ? "undo" : "done"}>
+              {step.done === true ? "Undo" : "Done"}
+            </button>
+            <button onClick={this.handleDelete} className="delete">
+              Delete
+            </button>
+          </div>
         </div>
-        <button onClick={this.handleUpdate}>
-          {step.done === true ? "Undo" : "Done"}
-        </button>
-        <button onClick={this.handleDelete}>
-          Delete Step
-        </button>
       </li>
     );
   }

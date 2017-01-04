@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Arvo');
+
 html,
 body,
 ul,
@@ -6,8 +8,12 @@ h3,
 button {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
   border: none;
+  font-family: "Roboto", sans-serif;
+}
+
+* {
+  border-radius: 5px;
 }
 
 html, body {
@@ -15,11 +21,32 @@ html, body {
 }
 
 body {
-  background-color: #B2EBF2;
+  background-color: #90CAF9;
+}
+
+h1 {
+  font-family: 'Arvo', serif;
+  font-size: 300%;
 }
 
 li {
   list-style: none;
+}
+
+.todo-item:hover, .todo-form:hover {
+  box-shadow: 2px 2px 5px #0D47A1;
+}
+
+.step-item:hover, .step-form:hover {
+  box-shadow: 2px 2px 5px #1E88E5;
+}
+
+button {
+  font-size: 100%;
+  background-color: #BBDEFB;
+  margin: 4px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 #content {
@@ -27,13 +54,128 @@ li {
   justify-content: center;
 }
 
-.app {
-  width: 40%;
+.container {
+  width: 80%;
   min-width: 400px;
   margin-bottom: 40px;
+}
+
+@media (min-width: 1300px) {
+  .container {
+    width: 60%;
+  }
+}
+
+.title-block {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .todo-list, .todo-form, .step-form, .todo-form label, .step-form label, .step-list {
   display: flex;
   flex-direction: column;
+}
+
+.todo-item, .todo-form {
+  margin: 10px;
+  padding: 10px;
+}
+
+.step-item, .step-form {
+  margin: 10px 4px;
+  padding: 10px;
+}
+
+.todo-item, .step-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-text, .step-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.todo-title {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.todo-detail-view {
+  padding: 10px;
+}
+
+.todo-body {
+  font-size: 110%;
+  font-style: italic;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+}
+
+.todo-item, .todo-form {
+  background-color: #64B5F6;
+}
+
+.step-item, .step-form {
+  background-color: #90CAF9;
+}
+
+.undo:hover, .delete:hover {
+  background-color: #F48FB1;
+}
+
+.done:hover {
+  background-color: #E3F2FD;
+}
+
+.done-item-title{
+  text-decoration: line-through;
+}
+
+.todo-form, .step-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-inputs {
+  width: 95%;
+}
+
+label {
+  margin: 20px 10px 10px 5px;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+input, textarea {
+  font-size: 100%;
+  margin: 15px 5px;
+  padding: 10px;
+  border: none;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 2px 2px 5px #1E88E5;
+}
+
+.submit {
+  font-size: 100%;
+  width: 40%;
+  padding: 10px;
+  background-color: #BBDEFB;
+}
+
+.submit:hover {
+  background-color: #E3F2FD;
 }

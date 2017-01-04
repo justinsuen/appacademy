@@ -38,24 +38,28 @@ class TodoForm extends React.Component {
     return (
       <form className="todo-form" onSubmit={this.handleSubmit}>
         <ErrorList errors={ this.props.errors } />
-        <label>
-          Title:
-          <input
-            name="title"
-            type="text"
-            value={this.state.title}
-            onChange={this.handleChange}
-            />
-        </label>
-        <label>
-          Body:
-          <textarea
-            name="body"
-            value={this.state.body}
-            onChange={this.handleChange}
-            />
-        </label>
-        <input type="submit" value="Create Todo!" />
+        <div className="form-inputs">
+          <label>
+            Title:
+            <input
+              name="title"
+              type="text"
+              value={this.state.title}
+              onChange={this.handleChange}
+              placeholder="Eat 3000 calories today"
+              />
+          </label>
+          <label>
+            Body:
+            <textarea
+              name="body"
+              value={this.state.body}
+              onChange={this.handleChange}
+              placeholder="My body is a temple and I need to get ready for hiberation"
+              />
+          </label>
+        </div>
+        <input type="submit" className="submit" value="Create Todo!" />
       </form>
     );
   }

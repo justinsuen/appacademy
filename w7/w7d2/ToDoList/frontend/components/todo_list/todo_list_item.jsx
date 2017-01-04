@@ -9,21 +9,28 @@ class TodoListItem extends React.Component {
     };
 
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleTitleClick = this.handleTitleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleTitleClick (e) {
+  handleClick (e) {
     e.preventDefault();
-    let detailShow = (this.state.detail) === true ? false : true;
-    this.setState({
-      detail: detailShow
-    });
+    if (e.target.type !== 'submit') {
+      let detailShow = (this.state.detail) === true ? false : true;
+      this.setState({
+        detail: detailShow
+      });
+    }
   }
 
   handleUpdate (e) {
     e.preventDefault();
     this.props.todo.done = (this.props.todo.done === true) ? false : true;
     this.props.updateTodo(this.props.todo);
+    if (this.props.todo.done) {
+      $(e.target).prev('.todo-title').addClass('done-item-title');
+    } else {
+      $(e.target).prev('.todo-title').removeClass('done-item-title');
+    }
   }
 
   render() {
@@ -33,12 +40,14 @@ class TodoListItem extends React.Component {
 
     return (
       <li className="todo-item">
-        <div onClick={this.handleTitleClick}>
-          { todo.title }
+        <div className="todo-text" onClick={this.handleClick}>
+          <div className="todo-title">
+            { todo.title }
+          </div>
+          <button onClick={this.handleUpdate} className={todo.done === true ? "undo" : "done"}>
+            {todo.done === true ? "Undo" : "Done"}
+          </button>
         </div>
-        <button onClick={this.handleUpdate}>
-          {todo.done === true ? "Undo" : "Done"}
-        </button>
         { this.state.detail ? todoDV : null }
       </li>
     );
