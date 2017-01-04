@@ -22,7 +22,6 @@ class TodoList extends React.Component {
             <TodoListItem
               key={idx}
               todo={todo}
-              destroyTodo={ this.props.destroyTodo }
               updateTodo={ this.props.updateTodo }
               />
           )}
