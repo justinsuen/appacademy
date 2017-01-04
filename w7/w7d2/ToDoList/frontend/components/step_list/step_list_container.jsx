@@ -4,13 +4,10 @@ import StepList from './step_list';
 import { stepsByTodoId } from '../../reducers/selectors';
 import { createStep } from '../../actions/step_actions';
 
-window.stepsByTodoId = stepsByTodoId;
-
-const mapStateToProps = (state, ownProps) => {
-  debugger;
+const mapStateToProps = (state, { todoId }) => {
   return {
-    steps: stepsByTodoId(state, ownProps.todoId),
-    todoId: ownProps.todoId
+    steps: stepsByTodoId(state, todoId),
+    todoId
   };
 };
 

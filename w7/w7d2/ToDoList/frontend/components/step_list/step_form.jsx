@@ -21,7 +21,7 @@ class StepForm extends React.Component {
     let newStep = merge({}, this.state);
     newStep.id = uniqueId();
 
-    this.props.createStep(newStep.todoId, newStep);
+    this.props.createStep(this.props.todoId, newStep);
     this.setState({ id: "", title: "", done: false });
   }
 

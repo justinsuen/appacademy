@@ -1,5 +1,4 @@
 import * as StepAPIUtil from '../util/step_api_util';
-import { receiveErrors, clearErrors } from './error_actions';
 
 export const RECEIVE_STEPS = "RECEIVE_STEPS";
 export const RECEIVE_STEP = "RECEIVE_STEP";
@@ -27,8 +26,7 @@ export const removeStep = (step) => {
 };
 
 // Async functions
-export const requestSteps = (todoId) => dispatch => {
-  debugger;
+export const requestSteps = todoId => dispatch => {
   return StepAPIUtil.fetchSteps(todoId).then(
     steps => dispatch(receiveSteps(steps))
   );
@@ -40,13 +38,13 @@ export const createStep = (todoId, step) => dispatch => {
   );
 };
 
-export const updateStep = (step) => dispatch => {
+export const updateStep = step => dispatch => {
   return StepAPIUtil.updateStep(step)
     .then(step => dispatch(receiveStep(step))
   );
 };
 
-export const destroyStep = (step) => dispatch => {
+export const destroyStep = step => dispatch => {
   return StepAPIUtil.destroyStep(step)
     .then(() => dispatch(removeStep(step))
   );

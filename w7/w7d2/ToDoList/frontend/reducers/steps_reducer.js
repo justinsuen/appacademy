@@ -9,13 +9,11 @@ const stepsReducer = (state = {}, action) => {
       action.steps.forEach((step) =>
         newState[step.id] = step
       );
-      // for (let stepKey in action.steps) {
-      //   newState[action.steps[stepKey].id] = action.steps[stepKey];
-      // }
       return newState;
     case RECEIVE_STEP:
-      newState[action.step.id] = action.step;
-      return newState;
+      return merge({}, state, { [action.step.id]: action.step });
+      // newState[action.step.id] = action.step;
+      // return newState;
     case REMOVE_STEP:
       delete newState[action.step.id];
       return newState;

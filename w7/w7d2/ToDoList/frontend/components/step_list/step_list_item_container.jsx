@@ -4,7 +4,6 @@ import StepListItem from './step_list_item';
 import { updateStep, destroyStep } from '../../actions/step_actions';
 
 const mapDispatchToProps = (dispatch, { step }) => {
-  debugger;
   return{
     destroyStep: () => dispatch(destroyStep(step)),
     updateStep: updatedStep => dispatch(updateStep(updatedStep))
