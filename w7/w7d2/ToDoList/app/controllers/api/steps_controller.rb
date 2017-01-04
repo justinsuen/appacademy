@@ -1,4 +1,4 @@
-class Api::StepController < ApplicationController
+class Api::StepsController < ApplicationController
   def index
     @steps = Todo.find(params[:todo_id]).steps
     render json: @steps
