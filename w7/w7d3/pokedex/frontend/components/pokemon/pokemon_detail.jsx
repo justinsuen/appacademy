@@ -15,24 +15,21 @@ class PokemonDetail extends React.Component {
     const {pokemonDetail, children} = this.props;
 
     return (
-      <div>
-        <ul>
-          <figure>
-            <img src={pokemonDetail.image_url} alt={pokemonDetail.name}/>
-          </figure>
-          <li>Id: {pokemonDetail.id}</li>
-          <li>Name: {pokemonDetail.name}</li>
+      <div className="pokemon-details-view">
+        <ul className="pokemon-details">
+          <img src={pokemonDetail.image_url} alt={pokemonDetail.name}/>
+          <li>{pokemonDetail.id} {pokemonDetail.name}</li>
+          <li>Type: {pokemonDetail.poke_type}</li>
           <li>Attack: {pokemonDetail.attack}</li>
           <li>Defense: {pokemonDetail.defense}</li>
           <li>Moves: {pokemonDetail.moves.join(", ")}</li>
-          <li>Type: {pokemonDetail.poke_type}</li>
-          <li>Items:
-            <ul>
+          <li className="pokemon-items">Items:
+            <ul className="pokemon-items-img">
               {pokemonDetail.items.map(item => <Item key={item.name} item={item}/>)}
             </ul>
+            {children}
           </li>
         </ul>
-        {children}
       </div>
     );
   }

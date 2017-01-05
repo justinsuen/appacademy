@@ -5,11 +5,11 @@ class ItemDetail extends React.Component {
     const item = this.props.item;
 
     return(
-      <li className="item-details">
+      <div className="item-details">
         <h3>{item.name}</h3>
-        <h3>{item.happiness}</h3>
-        <h3>{item.price}</h3>
-      </li>
+        <h3>Happiness: {item.happiness}</h3>
+        <h3>Price: {item.price}</h3>
+      </div>
     );
   }
 }
