@@ -50,4 +50,4 @@ This repository contains the files I worked on for the App Academy Nov 2016 Coho
 * [w7d1](w7/w7d1) - To-Do List frontend
 * [w7d2](w7/w7d2) - To-Do List full stack app
 * [w7d3](w7/w7d3) - Pokedex app and jbuilder project
-* [w7d4](w7/w7d3/pokedex) - Continue Pokedex app
+* [w7d4](w7/w7d4) - Continue Pokedex app and Rainbow routes
