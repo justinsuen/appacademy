@@ -15,6 +15,11 @@
  */
 @import "variables";
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   height: 100%;
 }
@@ -31,10 +36,10 @@ header {
   display: flex;
   justify-content: center;
   background-color: $red;
+  height: $header-height;
 
   img {
-    width: 43px;
-    height: 43px;
+    height: 100%;
   }
 }
 
@@ -89,8 +94,12 @@ nav {
 }
 
 #root {
-  height: 100%;
-  padding-top: 20px;
+  height: 95%;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
 }
 
 li {
@@ -109,15 +118,13 @@ h3 {
 
 .pokemon-index {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  height: 100%;
 }
 
 .pokemon-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: 0;
+  height: 100%;
+  overflow: scroll;
 
   .pokemon-list-item {
     display: flex;
@@ -133,7 +140,7 @@ h3 {
 
     img {
       width: 30px;
-      margin: 0px 10px 0px 5px;
+      margin: 0px 10px 0px 10px;
     }
   }
 }
@@ -142,8 +149,10 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
   justify-content: center;
   width: 100%;
+  overflow: scroll;
 
   .pokemon-details > li:first-of-type {
     margin-top: 100px;

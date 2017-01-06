@@ -9,7 +9,7 @@ class PokemonDetail extends React.Component {
   componentWillReceiveProps(newProps) {
     if (this.props.params.pokemonId !== newProps.params.pokemonId)
       this.props.requestSinglePokemon(newProps.params.pokemonId);
-    }
+  }
 
   render() {
     const {pokemonDetail, children} = this.props;

@@ -2,6 +2,7 @@ import * as APIUtil from '../util/api_util';
 
 export const RECEIVE_ALL_POKEMON = "RECEIVE_ALL_POKEMON";
 export const RECEIVE_SINGLE_POKEMON = "RECEIVE_POKEMON";
+export const RECEIVE_NEW_POKEMON = "RECEIVE_POKEMON";
 
 // sync functions
 export const receiveAllPokemon = pokemon => ({
@@ -11,6 +12,11 @@ export const receiveAllPokemon = pokemon => ({
 
 export const receiveSinglePokemon = pokemon => ({
   type: RECEIVE_SINGLE_POKEMON,
+  pokemon
+});
+
+export const receiveNewPokemon = pokemon => ({
+  type: RECEIVE_NEW_POKEMON,
   pokemon
 });
 
@@ -27,4 +33,9 @@ export const requestSinglePokemon = id => dispatch => {
       return pokemon;
     }
   );
+};
+
+export const createNewPokemon = pokemon => dispatch => {
+  return APIUtil.createNewPokemon(pokemon)
+    .then(() => dispatch(receiveNewPokemon(pokemon)));
 };

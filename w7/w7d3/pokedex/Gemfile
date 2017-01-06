@@ -36,6 +36,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'spring'
+  gem 'annotate'
 end
 
 group :test do
@@ -47,4 +48,3 @@ end
 group :development, :test do
   gem 'launchy'
 end
-

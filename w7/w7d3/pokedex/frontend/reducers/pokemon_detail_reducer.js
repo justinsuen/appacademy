@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { RECEIVE_SINGLE_POKEMON } from '../actions/pokemon_actions';
+import { RECEIVE_SINGLE_POKEMON, RECEIVE_NEW_POKEMON } from '../actions/pokemon_actions';
 
 const defaultPokemon = {
   image_url: '',
@@ -16,6 +16,8 @@ const pokemonDetailReducer = (state = defaultPokemon, action) => {
 
   switch(action.type) {
     case RECEIVE_SINGLE_POKEMON:
+      return merge({}, action.pokemon);
+    case RECEIVE_NEW_POKEMON:
       return merge({}, action.pokemon);
     default:
       return state;
