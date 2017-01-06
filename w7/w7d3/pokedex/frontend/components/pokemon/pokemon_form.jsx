@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router';
 
 class PokemonForm extends React.Component {
   constructor(props) {
@@ -24,17 +25,13 @@ class PokemonForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createNewPokemon(this.state)
-      .then(data => this.props.router.push(`/pokemon/${data.id}`)
-    );
+    this.props.createNewPokemon(this.state).then(data => this.props.router.push(`/pokemon/${data.id}`));
   }
 
   updateMoves(e) {
     this.setState({moves: Object.assign({}, this.state.moves, {
-          [e.target.id]: e.target.value
-        }
-      )}
-    );
+        [e.target.id]: e.target.value
+      })});
   }
 
   render() {
@@ -58,22 +55,25 @@ class PokemonForm extends React.Component {
     ];
 
     return (
-      <form className="pokemon-form" onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleUpdate('name')}/>
-        <input type="text" value={this.state.image_url} placeholder="Image Url" onChange={this.handleUpdate('image_url')}/>
-        <select value={this.state.type} onChange={this.handleUpdate('poke_type')} defaultValue="Select Pokemon Type">
-          {pokemonTypes.map((type, idx) => {
-            return <option value={type} key={idx}>{type}</option>;
-          })}
-        </select>
-        <input type="number" value={this.state.attack} placeholder="Attack" onChange={this.handleUpdate('attack')}/>
-        <input type="number" value={this.state.defense} placeholder="Defense" onChange={this.handleUpdate('defense')}/>
-        <input type="text" id="move_1" value={this.state.moves.move_1 || ''} placeholder="Move 1" onChange={this.updateMoves}/>
-        <input type="text" id="move_2" value={this.state.moves.move_2 || ''} placeholder="Move 2" onChange={this.updateMoves}/>
-        <button>Create Pokemon</button>
-      </form>
+      <div className="pokemon-form-container">
+        <img src="/assets/pokemon-logo.svg"/>
+        <form className="pokemon-form" onSubmit={this.handleSubmit}>
+          <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleUpdate('name')}/>
+          <input type="text" value={this.state.image_url} placeholder="Image Url" onChange={this.handleUpdate('image_url')}/>
+          <select value={this.state.type} onChange={this.handleUpdate('poke_type')} defaultValue="Select Pokemon Type">
+            {pokemonTypes.map((type, idx) => {
+              return <option value={type} key={idx}>{type}</option>;
+            })}
+          </select>
+          <input type="number" value={this.state.attack} placeholder="Attack" onChange={this.handleUpdate('attack')}/>
+          <input type="number" value={this.state.defense} placeholder="Defense" onChange={this.handleUpdate('defense')}/>
+          <input type="text" id="move_1" value={this.state.moves.move_1 || ''} placeholder="Move 1" onChange={this.updateMoves}/>
+          <input type="text" id="move_2" value={this.state.moves.move_2 || ''} placeholder="Move 2" onChange={this.updateMoves}/>
+          <button>Create Pokemon</button>
+        </form>
+      </div>
     );
   }
 }
 
-export default PokemonForm;
+export default withRouter(PokemonForm);
