@@ -1,5 +1,5 @@
 module.exports = {
-  entry: 'frontend/index.jsx',
+  entry: './frontend/bench_bnb.jsx',
   output: {
     path: 'app/assets/javascripts',
     filename: 'bundle.js',
