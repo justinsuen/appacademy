@@ -141,6 +141,7 @@ h3 {
 
 .pokemon-index {
   display: flex;
+  flex-direction: row;
   height: 100%;
 }
 
@@ -178,7 +179,7 @@ h3 {
   overflow: scroll;
 
   .pokemon-details > li:first-of-type {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 20px;
     font-size: 400%;
   }
@@ -198,7 +199,7 @@ h3 {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-top: 100px;
+      margin-top: 50px;
 
       .pokemon-items-img {
         display: flex;
@@ -209,6 +210,68 @@ h3 {
           width: 200px;
         }
       }
+    }
+  }
+}
+
+.pokemon-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: $light-grey;
+
+  .pokemon-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    margin-top: 20px;
+    padding: 25px;
+    width: 45%;
+    background-color: white;
+
+    input, select {
+      border: none;
+      border-bottom: 2px solid $light-grey;
+      margin: 15px;
+      font-size: 150%;
+      width: 100%;
+      color: $light-grey;
+    }
+
+    input {
+      padding: 10px 0;
+    }
+
+    select {
+      -webkit-appearance: none;
+      background: none;
+      border-radius: 0;
+      padding: 10px 0px;
+      cursor: pointer;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-bottom: 2px solid $red;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      background-color: $red;
+      font-size: 150%;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #F44336;
     }
   }
 }

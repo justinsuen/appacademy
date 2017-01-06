@@ -36,22 +36,22 @@ class PokemonForm extends React.Component {
 
   render() {
     const pokemonTypes = [
-      "fire",
-      "electric",
-      "normal",
-      "ghost",
-      "psychic",
-      "water",
       "bug",
       "dragon",
-      "grass",
+      "electric",
       "fighting",
-      "ice",
+      "fire",
       "flying",
-      "poison",
+      "ghost",
+      "grass",
       "ground",
+      "ice",
+      "normal",
+      "poison",
+      "psychic",
       "rock",
-      "steel"
+      "steel",
+      "water"
     ];
 
     return (
@@ -60,7 +60,7 @@ class PokemonForm extends React.Component {
         <form className="pokemon-form" onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleUpdate('name')}/>
           <input type="text" value={this.state.image_url} placeholder="Image Url" onChange={this.handleUpdate('image_url')}/>
-          <select value={this.state.type} onChange={this.handleUpdate('poke_type')} defaultValue="Select Pokemon Type">
+          <select value={this.state.type} onChange={this.handleUpdate('poke_type')}>
             {pokemonTypes.map((type, idx) => {
               return <option value={type} key={idx}>{type}</option>;
             })}
