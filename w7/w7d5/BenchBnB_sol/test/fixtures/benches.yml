@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  lat: MyString
+  long: MyString
+  seating: 1
+  material: MyString
+
+two:
+  description: MyString
+  lat: MyString
+  long: MyString
+  seating: 1
+  material: MyString
