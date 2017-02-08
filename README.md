@@ -51,3 +51,16 @@ This repository contains the files I worked on for the App Academy Nov 2016 Coho
 * [w7d2](w7/w7d2) - To-Do List full stack app
 * [w7d3](w7/w7d3) - Pokedex app and jbuilder project
 * [w7d4](w7/w7d4) - Continue Pokedex app and Rainbow routes
+* [w7d5](w7/w7d5) - BenchBnB
+
+### Week 8 onwards
+* [Chartesian](https://github.com/justinsuen/chartesian) - My capstone project! Chartesian is a dynamic charting web application built on Rails, React, Redux, and Recharts.js.
+* [VisuAlgos](https://github.com/justinsuen/visualgos) - VisuAlgos is an interactive visualizer for various path-finding algorithms.
+* [Shiparoo](https://github.com/DanielLChang/Shiparoo) - Shiparoo is a web app built on the RRRR (Rails, React, Redux, React Native) stack for tracking packages. Shippo, Twilio, Auth0, and Google Maps APIs are used.
+* [Shiparoo iOS](https://github.com/justinsuen/shiparoo-ios) - This is Shiparoo's iOS React Native brother!
+
+### Algorithms projects
+* [Arrays](algo-projects/arrays) - Static, Dynamic arrays and Ring Buffers
+* [Hashmaps](algo-projects/hashmaps) - Hashmap implementations
+* [Heaps](algo-projects/heaps) - Binary Min Heaps and Heap Sort
+* [Quicksort](algo-projects/quicksort) - Quicksort naive and in-place
